@@ -2,16 +2,11 @@ import Link from 'next/link'
 import 'isomorphic-fetch'
 
 export default class Portfolio extends React.Component {
-    constructor(props){
-        super(props)
-    }
     async componentDidMount(props) {
             this.setState({isLoading: true, repos: {}});
-            fetch('https://api.github.com/users/majunga/repos')
-               .then(res => res.json()
-               .then((data) => {
-                   this.setState({isLoading: false, repos: data})  
-               }))
+            var json = await (await fetch('https://api.github.com/users/majunga/repos')).json()
+            this.setState({isLoading: false, repos: json})
+               
          }
     render() {
         return (
