@@ -3,9 +3,9 @@ import 'isomorphic-fetch'
 
 export default class Portfolio extends React.Component {
     async componentDidMount(props) {
-            this.setState({isLoading: true, repos: {}});
+            this.setState({repos: {}});
             var json = await (await fetch('https://api.github.com/users/majunga/repos')).json()
-            this.setState({isLoading: false, repos: json})
+            this.setState({repos: json})
                
          }
     render() {
@@ -15,10 +15,11 @@ export default class Portfolio extends React.Component {
                 
                 {(this.state && this.state.repos && this.state.repos.length > 0) ? 
                 <div>
-                     {
+                    
+                     { 
                          this.state.repos.map(repo =>
                             <div key="{repo.id}">
-                                <h3><Link href="{repo.html_url}"><a>{repo.name}</a></Link></h3>
+                                <h3><Link href={repo.html_url}><a>{repo.name}</a></Link></h3>
                                 <p>{repo.description}</p>
                             </div>
                         )
