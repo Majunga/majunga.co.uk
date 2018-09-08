@@ -23,7 +23,7 @@ export default class Portfolio extends React.Component {
                      {
                          this.state.repos.map(repo =>
                             <div key="{repo.id}">
-                                <h3><Link href="{repo.html_url}">{repo.name}</Link></h3>
+                                <h3><Link href="{repo.html_url}"><a>{repo.name}</a></Link></h3>
                                 <p>{repo.description}</p>
                             </div>
                         )
