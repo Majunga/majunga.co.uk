@@ -1,14 +1,15 @@
 import MyInfo from '../components/MyInfo.js'
-import Layout from '../components/Layout.js'
 import { Grid } from 'react-bootstrap'
+import Portfolio from '../components/Portfolio.js';
+import Layout from '../components/Layout.js';
 
 const Index = () =>
-
-<div className="App">
-    <Layout/>
-    <Grid>
-        <MyInfo/>
-    </Grid>
-</div>
-
+<Layout>
+    <div>
+        <Grid>
+            <MyInfo/>
+            <Portfolio/>
+        </Grid>
+    </div>
+</Layout>
 export default Index

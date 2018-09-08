@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Header from './Header.js'
 
-const Layout = () =>
-<div>
+const Layout = (props) =>
+<div className="App">
 
     <Head>
         <title>Majunga.co.uk</title>
@@ -12,6 +12,8 @@ const Layout = () =>
     </Head>
 
     <Header/>
+
+    {props.children}
 </div>
 
 

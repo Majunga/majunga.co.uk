@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 
 const Header = () =>
@@ -9,7 +8,7 @@ const Header = () =>
             </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-            <NavItem eventKey={1} href="portfolio">
+            <NavItem eventKey={1} href="#portfolio">
                 Portfolio
             </NavItem>
         </Nav>
