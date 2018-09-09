@@ -6,6 +6,8 @@ function ConnectToDockerMachine()
     PARAM(
         [string]$machineName
     )
+    & docker-machine env $machineName | Invoke-Expression
+    write-host "Connected to docker machine"
 }
 
 function Compose(){
@@ -15,8 +17,8 @@ function Compose(){
         [string]$machineName
     )
     write-host "Starting deployment"
-    & docker-machine env $machineName | Invoke-Expression
-    write-host "Connected to docker machine"
+    ConnectToDockerMachine -machineName $machineName
+    
     & docker-compose -f $composeFile up --build -d
     write-host "Finished build"
 }
