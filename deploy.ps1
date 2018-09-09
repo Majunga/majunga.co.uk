@@ -14,8 +14,9 @@ function Compose(){
         [string]$composeFile,
         [string]$machineName
     )
-
-    docker-machine env $machineName | Invoke-Expression
-
-    docker-compose -f $composeFile up --build -d
+    write-host "Starting deployment"
+    & docker-machine env $machineName | Invoke-Expression
+    write-host "Connected to docker machine"
+    & docker-compose -f $composeFile up --build -d
+    write-host "Finished build"
 }
