@@ -4,4 +4,3 @@ services:
     build: ./src/Frontend
     ports:
       - "3000:3000"
-    container_name: majungacouk_frontend
