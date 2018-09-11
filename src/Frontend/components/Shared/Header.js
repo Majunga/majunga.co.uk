@@ -8,9 +8,9 @@ const Header = () =>
             </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-            <NavItem eventKey={1} href="#portfolio">
+            {/* <NavItem eventKey={1} href="#portfolio">
                 Portfolio
-            </NavItem>
+            </NavItem> */}
         </Nav>
     </Navbar>
 

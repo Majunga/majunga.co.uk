@@ -10,7 +10,7 @@ export default class Portfolio extends React.Component {
     }
     render() {
         return (
-            <div className="portfolio">
+            <div id="portfolio">
                 <h2><Link href="https://github.com/Majunga"><a>My Github</a></Link></h2>
                 
                 {
