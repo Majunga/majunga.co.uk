@@ -7,6 +7,9 @@ const Layout = (props) =>
     <Head>
         <title>Majunga.co.uk</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Harrogate based Software developer" />
+        <meta name="keywords" content="Harrogate Web developer, harroage software developer, Harrogate, north west yorkshire software developer, north west yorkshire web developer, north west yorkshire, full Stack developer, App developer, Web Developer, Websites, backend" />
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
         
