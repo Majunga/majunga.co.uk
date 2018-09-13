@@ -121,7 +121,7 @@ ExecYoutubeDL = (session, id, url, times) => {
                         }
                         else {
                             session.send("The video has now been butchered:")
-                            session.send(process.env.URL + "/static/" + id + "Cut.mp4")
+                            session.send(process.env.URL + "/static/" + cutFile)
                         }
                         fs.unlinkSync(file)
                     })
