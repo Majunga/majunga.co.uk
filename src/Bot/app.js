@@ -2,6 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 require('dotenv').config();
 const { exec } = require('child_process');
+var glob = require("glob")
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -87,34 +88,47 @@ ExecYoutubeDL = (session, id, url, times) => {
             return
         }
         else {
-            var files = GetFiles(id + ".*")
-            var file = files.length > 0 ? files[0] : undefined
+            glob("/usr/src/app/static/"+ id + ".*", function (er, files) {
+                if (er) { console.error(er) }
+                console.log("Files found: " + files)
 
-            if (file) {
-                console.error("Couldn't find file to cut")
-                session.send("Error: Couldn't file file to butcher :(")
-            }
-            console.log(process.env.URL + "/static/" + file)
+                var file = files.length > 0 ? files[0] : undefined
+                console.log("Filename: " + file)
+                if (!file) {
+                    console.error("Couldn't find file to cut")
+                    session.send("Error: Couldn't file file to butcher :(")
+                }
+                var ext =  file.split('.')[1]
+                console.log(process.env.URL + "/static/" + file)
 
-            if (times) {
-                session.send("Video has been downloaded. Please wait while I cut it up!")
-                exec('ffmpeg -i "/usr/src/app/static/' + file + '" -ss ' + times.start + ' -to ' + times.end + ' -c copy /usr/src/app/static/' + id + 'Cut.' + file.split('.')[1], (err, stdout, stderr) => {
-                    if (err) {
-                        console.log("Failed to save video: " + err)
-                        session.send("Failed to save video: " + err)
-                        return
-                    }
-                    else {
-                        session.send("The video has now been butchered:")
-                        session.send(process.env.URL + "/static/" + id + "Cut.mkv")
-                    }
-                })
-            }
-            else {
-                session.send("Video has been downloaded")
-                session.send(process.env.URL + "/static/" + id + ".mkv")
-            }
-
+                if (times) {
+                    session.send("Video has been downloaded. Please wait while I cut it up!")
+                    exec('ffmpeg -i "' + file + '" -f mp4  -strict -2 -c  copy -ss ' + times.start + ' -to ' + times.end + ' -frame_size 160 /usr/src/app/static/' + id + 'Cut.mp4', (err, stdout, stderr) => {
+                        if (err) {
+                            console.log("Failed to save video: " + err)
+                            session.send("Failed to save video: " + err)
+                            return
+                        }
+                        else {
+                            session.send("The video has now been butchered:")
+                            session.send(process.env.URL + "/static/" + id + "Cut.mp4")
+                        }
+                    })
+                }
+                else {
+                    exec('ffmpeg -i "' + file + '" -f mp4 -c copy /usr/src/app/static/' + id + '.mp4', (err, stdout, stderr) => {
+                        if (err) {
+                            console.log("Failed to save video: " + err)
+                            session.send("Failed to save video: " + err)
+                            return
+                        }
+                        else {
+                            session.send("The video has now been downloaded:")
+                            session.send(process.env.URL + "/static/" + id + ".mp4")
+                        }
+                    })
+                }
+            })
         }
     })
 }
