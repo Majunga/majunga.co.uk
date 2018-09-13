@@ -1,5 +1,10 @@
 FROM node:6-onbuild
 
+# Install youtube-dl
+RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN chmod a+rx /usr/local/bin/youtube-dl
+RUN export PATH=$PATH:/usr/local/bin/youtube-dl
+
 # Create app directory
 RUN mkdir -p /usr/src/app 
 WORKDIR /usr/src/app
