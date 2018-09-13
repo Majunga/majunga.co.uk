@@ -44,7 +44,7 @@ DownloadFromYoutube = (session, message) => {
         var url = splitMessage[1].replace("<", "").replace(">", "")
         var id = url.split("?v=")
         console.log("Downloading " + id[id.length - 1] + ".mp4 from " + url)
-
+        session.send("Downloading video")
         exec('youtube-dl --restrict-filenames -o "./static/%(id)s.%(ext)s" ' + url , (err, stdout, stderr) => {
             if (err) {
                 console.log("Failed to save video: " + err)
