@@ -27,15 +27,19 @@ server.post('/api/messages', connector.listen());
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
     console.log(GetDate() + " Message received")
-    var message = session.message.text
-    if (message.toLocaleLowerCase().startsWith("download")) {
+    var message = session.message.text.toLocaleLowerCase()
+    if (message.startsWith("download")) {
         DownloadFromYoutube(session, message)
     }
     else {
-        session.send("You said: %s", session.message.text);
+        HelpMessage(session)
     }
     console.log(GetDate() + " Message sent")
 }).set('storage', new builder.MemoryBotStorage());
+
+HelpMessage = (session) => {
+    session.send("Bot Help. To use this bot please enter one of the following commands:\n download [Youtube URL]");
+}
 
 DownloadFromYoutube = (session, message) => {
     var splitMessage = message.split(" ")
