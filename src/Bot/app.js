@@ -41,9 +41,9 @@ DownloadFromYoutube = (session, message) => {
     var splitMessage = message.split(" ")
 
     if (splitMessage.length == 2) {
-        var url = splitMessage[1]
+        var url = splitMessage[1].replace("<", "").replace(">", "")
         var id = url.split("?v=")
-        console.log("Downloading " + id + ".mp4 from " + url)
+        console.log("Downloading " + id[id.length - 1] + ".mp4 from " + url)
 
         exec('youtube-dl -o "./static/%(id)s.%(ext)s" ' + url , (err, stdout, stderr) => {
             if (err) {
@@ -52,8 +52,8 @@ DownloadFromYoutube = (session, message) => {
                 return
             }
             else {
-                console.log("https://majunga.co.uk:3978/static/"+ id[id.length -1] + ".mp4")
-                session.send("https://majunga.co.uk:3978/static/"+ id[id.length -1] + ".mp4")
+                console.log("https://majunga.co.uk:3978/static/"+ id[id.length - 1] + ".mp4")
+                session.send("https://majunga.co.uk:3978/static/"+ id[id.length - 1] + ".mp4")
             }
         })
     }
