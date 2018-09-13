@@ -38,7 +38,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
 }).set('storage', new builder.MemoryBotStorage());
 
 HelpMessage = (session) => {
-    session.send("Bot Help. To use this bot please enter one of the following commands:\n download [Youtube URL]");
+    session.send("Bot Help. To use this bot please type one of the following commands:");
+    session.send("download [Youtube URL]");
 }
 
 DownloadFromYoutube = (session, message) => {
