@@ -3,6 +3,7 @@ var builder = require('botbuilder');
 require('dotenv').config();
 const { exec } = require('child_process');
 var glob = require("glob")
+var fs = require("fs")
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -88,7 +89,7 @@ ExecYoutubeDL = (session, id, url, times) => {
             return
         }
         else {
-            glob("/usr/src/app/static/"+ id + ".*", function (er, files) {
+            glob("/usr/src/app/static/" + id + ".*", function (er, files) {
                 if (er) { console.error(er) }
                 console.log("Files found: " + files)
 
@@ -98,12 +99,21 @@ ExecYoutubeDL = (session, id, url, times) => {
                     console.error("Couldn't find file to cut")
                     session.send("Error: Couldn't file file to butcher :(")
                 }
-                var ext =  file.split('.')[1]
-                console.log(process.env.URL + "/static/" + file)
+                var cutFile = '/usr/src/app/static/' + id + 'Cut*.mp4'
+                var cutFiles = getfiles(cutFile).map((file) => file)
+                if (cutFiles.length > 0) {
+                    console.log("Deleting old file")
+                    fs.unlinkSync(cutFiles[0])
 
+                    // To get round caching issue
+                    cutFile =  cutFile.replace("*.mp4", (Math.floor(Math.random() * 1000)).toString() + ".mp4")
+                }
+                else{
+                    cutFile = cutFile.replace("*.mp4", (Math.floor(Math.random() * 1000)).toString()+".mp4")
+                }
                 if (times) {
                     session.send("Video has been downloaded. Please wait while I cut it up!")
-                    exec('ffmpeg -i "' + file + '" -f mp4  -strict -2 -c  copy -ss ' + times.start + ' -to ' + times.end + ' -frame_size 160 /usr/src/app/static/' + id + 'Cut.mp4', (err, stdout, stderr) => {
+                    exec('ffmpeg -i "' + file + '" -f mp4  -strict -2 -c  copy -ss ' + times.start + ' -to ' + times.end + ' -frame_size 160 ' + cutFile, (err, stdout, stderr) => {
                         if (err) {
                             console.log("Failed to save video: " + err)
                             session.send("Failed to save video: " + err)
@@ -113,6 +123,7 @@ ExecYoutubeDL = (session, id, url, times) => {
                             session.send("The video has now been butchered:")
                             session.send(process.env.URL + "/static/" + id + "Cut.mp4")
                         }
+                        fs.unlinkSync(file)
                     })
                 }
                 else {
@@ -126,11 +137,16 @@ ExecYoutubeDL = (session, id, url, times) => {
                             session.send("The video has now been downloaded:")
                             session.send(process.env.URL + "/static/" + id + ".mp4")
                         }
+                        fs.unlinkSync(file)
                     })
                 }
             })
         }
     })
+}
+
+var getfiles = (filename) => {
+    return glob(filename, { sync: true })
 }
 
 GetDate = () => {
