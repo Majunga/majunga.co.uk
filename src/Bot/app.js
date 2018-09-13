@@ -28,24 +28,25 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector, function (session) {
     console.log(GetDate() + " Message received")
     var message = session.message.text.toLocaleLowerCase()
-    if (message.startsWith("download")) {
+    if (message.startsWith("bot download")) {
         DownloadFromYoutube(session, message)
     }
-    else {
+    else if(message.startsWith("bot")) {
         HelpMessage(session)
     }
     console.log(GetDate() + " Message sent")
 }).set('storage', new builder.MemoryBotStorage());
 
 HelpMessage = (session) => {
-    session.send("Bot Help. To use this bot please enter one of the following commands:\n download [Youtube URL]");
+    session.send("Bot Help. To use this bot please type one of the following commands:");
+    session.send("bot download [Youtube URL]");
 }
 
 DownloadFromYoutube = (session, message) => {
     var splitMessage = message.split(" ")
 
-    if (splitMessage.length == 2) {
-        var url = splitMessage[1].replace("<", "").replace(">", "")
+    if (splitMessage.length == 3) {
+        var url = splitMessage[2].replace("<", "").replace(">", "")
         var id = url.split("?v=")
         console.log("Downloading " + id[id.length - 1] + ".mp4 from " + url)
         session.send("Downloading video")
