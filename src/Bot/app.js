@@ -5,13 +5,7 @@ const { exec } = require('child_process');
 var glob = require("glob")
 var fs = require("fs")
 
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log(process.env.MicrosoftAppId)
-    console.log(process.env.MicrosoftAppPassword)
-    console.log('%s listening to %s', server.name, server.url);
-});
+
 
 server.get("/static/*", restify.plugins.serveStatic({
     directory: __dirname
