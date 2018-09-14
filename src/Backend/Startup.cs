@@ -14,6 +14,7 @@ namespace BotDot
     using Microsoft.Bot.Connector;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using System;
 
     /// <summary>
     /// Web host Start up
@@ -54,8 +55,8 @@ namespace BotDot
             // Set up Bot
             services.AddSingleton(_ => this.Configuration);
             var credentialProvider = new StaticCredentialProvider(
-                this.Configuration.GetSection(MicrosoftAppCredentials.MicrosoftAppIdKey)?.Value,
-                this.Configuration.GetSection(MicrosoftAppCredentials.MicrosoftAppPasswordKey)?.Value);
+                Environment.GetEnvironmentVariable("MicrosoftAppId"),
+                Environment.GetEnvironmentVariable("MicrosoftAppPassword"));
 
             services.AddAuthentication(
                     options =>
