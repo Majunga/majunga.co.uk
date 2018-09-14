@@ -4,9 +4,9 @@ EXPOSE 3978
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["./Backend/Backend.csproj", "src/Backend/"]
+COPY ["./Backend.csproj", "src/Backend/"]
 RUN dotnet restore "src/Backend/Backend.csproj"
-COPY . .
+COPY [".", "src/Backend/"]
 WORKDIR "src/Backend"
 RUN dotnet build "Backend.csproj" -c Release -o /app
 
