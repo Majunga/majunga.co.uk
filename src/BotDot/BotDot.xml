@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BotDot</name>
+    </assembly>
+    <members>
+        <member name="T:BotDot.BusinessLogic.Bot.ArguementsHandler">
+            <summary>
+            Get Arguments from string message
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.ArguementsHandler"/> class.
+            </summary>
+            <param name="argsStr">Argument String</param>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.CanAction">
+            <summary>
+            Message is actionable by bot
+            </summary>
+            <returns>Bool</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.GetCommand">
+            <summary>
+            Get Command from Arguements
+            </summary>
+            <returns>Command (Defaults to help if not found)</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.GetDownloadCommandArguements">
+            <summary>
+            Get Tuple list of Download Arguments and there values
+            </summary>
+            <returns>List of Tuple of Download Arguments * Argument Value</returns>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler">
+            <summary>
+            Command Handler
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.CommandHandler"/> class.
+            </summary>
+            <param name="download">Downloads files from Internet</param>
+            <param name="videoConverter">Video conversion</param>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler.Commands">
+            <summary>
+            Commands available
+            </summary>
+        </member>
+        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.Commands.Download">
+            <summary>
+            Download Youtube video
+            </summary>
+        </member>
+        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.Commands.Help">
+            <summary>
+            Help section
+            </summary>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements">
+            <summary>
+            Download Command Arguements
+            </summary>
+        </member>
+        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.Url">
+            <summary>
+            Url of file to download, last arguement
+            </summary>
+        </member>
+        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.Start">
+            <summary>
+            Time to start video from
+            </summary>
+        </member>
+        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.End">
+            <summary>
+            Time to end video from
+            </summary>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownload">
+            <summary>
+            Downloads files from the internet
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IDownload.YouTubeVideo(System.Uri)">
+            <summary>
+            Download YouTube video
+            </summary>
+            <param name="uri">Uri to the video</param>
+            <returns>Downloaded Video file</returns>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter">
+            <summary>
+            Converts video formats
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter.ConvertToMp4(System.IO.File,System.Object)">
+            <summary>
+            Convert any video type to MP4
+            </summary>
+            <param name="file">File to convert</param>
+            <param name="times">Cut file to size</param>
+            <returns>Converted video File</returns>
+        </member>
+        <member name="T:BotDot.Controllers.MessagesController">
+            <summary>
+            Bot Messages controller
+            </summary>
+        </member>
+        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.Controllers.MessagesController"/> class.
+            </summary>
+            <param name="configuration">Configuration of Application</param>
+        </member>
+        <member name="M:BotDot.Controllers.MessagesController.Post(Microsoft.Bot.Connector.Activity)">
+            <summary>
+            POST Message method
+            </summary>
+            <param name="activity">Activatity object</param>
+            <returns>Action Result</returns>
+        </member>
+    </members>
+</doc>
