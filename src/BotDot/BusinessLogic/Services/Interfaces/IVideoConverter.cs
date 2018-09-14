@@ -6,6 +6,7 @@ namespace BotDot.BusinessLogic.Services.Interfaces
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Converts video formats
@@ -18,6 +19,6 @@ namespace BotDot.BusinessLogic.Services.Interfaces
         /// <param name="file">File to convert</param>
         /// <param name="times">Cut file to size</param>
         /// <returns>Converted video File</returns>
-        FileInfo ConvertToMp4(FileInfo file, Tuple<string, string> times);
+        Task<FileInfo> ConvertToMp4(FileInfo file, Tuple<string, string> times);
     }
 }

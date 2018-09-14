@@ -43,5 +43,24 @@ namespace BotDot.Helpers
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the full path of a Directory or defaults to current Directories full path
+        /// </summary>
+        /// <param name="path">Partial path</param>
+        /// <returns>Full Path</returns>
+        public static  string GetFullPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return Environment.CurrentDirectory;
+            }
+            else
+            {
+                return Path.GetFullPath(path);
+            }
+
+
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace BotDot.BusinessLogic.Services
 {
     using BotDot.BusinessLogic.Services.Interfaces;
+    using BotDot.Helpers;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,9 +16,27 @@
             this.outputPath = outputPath;
         }
 
-        public FileInfo ConvertToMp4(FileInfo file, Tuple<string, string> times)
+        public async Task<FileInfo> ConvertToMp4(FileInfo file, Tuple<string, string> times)
         {
-            throw new NotImplementedException();
+            var path = FileHelper.GetFullPath(this.outputPath);
+            var newFilename = $"{path}/{file.Name.Replace(file.Extension, string.Empty)}Cut.mp4";
+            var arguments = $"-y -i {file.FullName} -f mp4 -strict -2 -c copy";
+
+            if (!string.IsNullOrWhiteSpace(times?.Item1))
+            {
+                arguments += $" -ss {times.Item1}";
+            }
+
+            if (!string.IsNullOrWhiteSpace(times?.Item2))
+            {
+                arguments += $" -to {times.Item2}";
+            }
+
+            arguments += $" -frame_size 160 {newFilename}";
+
+            await new ProcessHelper().Run("ffmpeg", arguments);
+
+            return new FileInfo(newFilename);
         }
     }
 }

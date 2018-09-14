@@ -30,15 +30,7 @@ namespace BotDot.BusinessLogic.Services
         /// <returns>The FileInfo of downloaded file</returns>
         public async Task<FileInfo> DownloadVideo(Uri uri)
         {
-            string path;
-            if (string.IsNullOrWhiteSpace(this.outputPath))
-            {
-                path = Environment.CurrentDirectory;
-            }
-            else
-            {
-                path = Path.GetFullPath(this.outputPath);
-            }
+            var path = FileHelper.GetFullPath(this.outputPath);
 
             var id = this.GetVideoIdFromQueryString(uri);
 

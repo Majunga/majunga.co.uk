@@ -1,4 +1,5 @@
-﻿namespace BotDot.Tests.BusinessLogic.Services
+﻿[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
+namespace BotDot.Tests.BusinessLogic.Services
 {
     using BotDot.BusinessLogic.Services;
     using System;
