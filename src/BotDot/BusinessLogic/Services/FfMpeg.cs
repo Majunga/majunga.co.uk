@@ -1,21 +1,37 @@
-﻿namespace BotDot.BusinessLogic.Services
+﻿// <copyright file="FfMpeg.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
+
+namespace BotDot.BusinessLogic.Services
 {
-    using BotDot.BusinessLogic.Services.Interfaces;
-    using BotDot.Helpers;
     using System;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
+    using BotDot.BusinessLogic.Services.Interfaces;
+    using BotDot.Helpers;
 
+    /// <summary>
+    /// FFMpeg Video Converter
+    /// </summary>
     public class FFMpeg : IVideoConverter
     {
-        private string outputPath;
+        private readonly string outputPath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FFMpeg"/> class.
+        /// </summary>
+        /// <param name="outputPath">Output path of converted file</param>
         public FFMpeg(string outputPath)
         {
             this.outputPath = outputPath;
         }
 
+        /// <summary>
+        /// Convert file to Mp4
+        /// </summary>
+        /// <param name="file">File to convert</param>
+        /// <param name="times">Times tp cut file to</param>
+        /// <returns>async task of Converted Files Info </returns>
         public async Task<FileInfo> ConvertToMp4(FileInfo file, Tuple<string, string> times)
         {
             var path = FileHelper.GetFullPath(this.outputPath);

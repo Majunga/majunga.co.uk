@@ -4,20 +4,19 @@
 
 namespace BotDot.BackgroundTasks
 {
-    using BotDot.Helpers;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Hosting;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using BotDot.Helpers;
+    using Microsoft.Extensions.Hosting;
 
     /// <summary>
     /// Deletes Expired Downloads, so server storages isn't filleds
     /// </summary>
     public class DeleteExpiredDownloads : IHostedService, IDisposable
     {
-        private Timer timer;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment env;
+        private Timer timer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteExpiredDownloads"/> class.

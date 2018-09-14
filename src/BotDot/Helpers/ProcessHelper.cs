@@ -1,4 +1,8 @@
-﻿namespace BotDot.Helpers
+﻿// <copyright file="ProcessHelper.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
+
+namespace BotDot.Helpers
 {
     using System;
     using System.Diagnostics;

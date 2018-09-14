@@ -13,21 +13,6 @@ namespace BotDot.Helpers
     public class FileHelper
     {
         /// <summary>
-        /// Delete files in directory
-        /// </summary>
-        /// <param name="filePattern">Pattern to match with</param>
-        public void CleanUpFile(string filePattern)
-        {
-            foreach (var file in Directory.GetFiles(filePattern))
-            {
-                if (File.Exists(file))
-                {
-                    File.Delete(file);
-                }
-            }
-        }
-
-        /// <summary>
         /// Delete files in Directory that are older than 15 mins
         /// </summary>
         /// <param name="path">Directory Path</param>
@@ -49,7 +34,7 @@ namespace BotDot.Helpers
         /// </summary>
         /// <param name="path">Partial path</param>
         /// <returns>Full Path</returns>
-        public static  string GetFullPath(string path)
+        public static string GetFullPath(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -59,8 +44,21 @@ namespace BotDot.Helpers
             {
                 return Path.GetFullPath(path);
             }
+        }
 
-
+        /// <summary>
+        /// Delete files in directory
+        /// </summary>
+        /// <param name="filePattern">Pattern to match with</param>
+        public void CleanUpFile(string filePattern)
+        {
+            foreach (var file in Directory.GetFiles(filePattern))
+            {
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
+            }
         }
     }
 }

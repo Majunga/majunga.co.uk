@@ -4,12 +4,12 @@
 
 namespace BotDot.BusinessLogic.Services
 {
-    using BotDot.BusinessLogic.Services.Interfaces;
-    using BotDot.Helpers;
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using BotDot.BusinessLogic.Services.Interfaces;
+    using BotDot.Helpers;
 
     /// <summary>
     /// Youtube-Dl is used for downloading Youtube videos
@@ -18,15 +18,19 @@ namespace BotDot.BusinessLogic.Services
     {
         private string outputPath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Youtube_Dl"/> class.
+        /// </summary>
+        /// <param name="outputPath">Output path of downloaded Video</param>
         public Youtube_Dl(string outputPath)
         {
             this.outputPath = outputPath;
         }
+
         /// <summary>
         /// Download Video
         /// </summary>
         /// <param name="uri">Url to video</param>
-        /// <param name="outputPath">Where file should be downloaded to</param>
         /// <returns>The FileInfo of downloaded file</returns>
         public async Task<FileInfo> DownloadVideo(Uri uri)
         {

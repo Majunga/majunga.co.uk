@@ -4,14 +4,14 @@
 
 namespace BotDot.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
     using BotDot.BusinessLogic.Bot;
     using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Bot.Connector;
     using Microsoft.Extensions.Configuration;
-    using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Bot Messages controller
