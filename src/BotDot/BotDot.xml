@@ -57,7 +57,7 @@
             Command Handler
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IDownloadFile,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
             Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.CommandHandler"/> class.
             </summary>
@@ -133,18 +133,6 @@
             </summary>
             <returns>Success * Message</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile">
-            <summary>
-            Downloads files from the internet
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile.YouTubeVideo(System.Uri)">
-            <summary>
-            Download YouTube video
-            </summary>
-            <param name="uri">Uri to the video</param>
-            <returns>Downloaded Video file</returns>
-        </member>
         <member name="T:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter">
             <summary>
             Converts video formats
@@ -158,12 +146,44 @@
             <param name="times">Cut file to size</param>
             <returns>Converted video File</returns>
         </member>
+        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload">
+            <summary>
+            Downloads files from the internet
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload.DownloadVideo(System.Uri)">
+            <summary>
+            Download YouTube video
+            </summary>
+            <param name="uri">Uri to the video</param>
+            <returns>Task of Downloaded Video file</returns>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Services.Youtube_Dl">
+            <summary>
+            Youtube-Dl is used for downloading Youtube videos
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.DownloadVideo(System.Uri)">
+            <summary>
+            Download Video
+            </summary>
+            <param name="uri">Url to video</param>
+            <param name="outputPath">Where file should be downloaded to</param>
+            <returns>The FileInfo of downloaded file</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.GetVideoIdFromQueryString(System.Uri)">
+            <summary>
+            Get the Video Id from the Uri's Query string
+            </summary>
+            <param name="uri">Uri of website</param>
+            <returns>Id of video</returns>
+        </member>
         <member name="T:BotDot.Controllers.MessagesController">
             <summary>
             Bot Messages controller
             </summary>
         </member>
-        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,BotDot.BusinessLogic.Services.Interfaces.IDownloadFile,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
             Initializes a new instance of the <see cref="T:BotDot.Controllers.MessagesController"/> class.
             </summary>
@@ -177,6 +197,36 @@
             </summary>
             <param name="activity">Activatity object</param>
             <returns>Action Result</returns>
+        </member>
+        <member name="T:BotDot.Helpers.FileHelper">
+            <summary>
+            Helpers for file related taskss
+            </summary>
+        </member>
+        <member name="M:BotDot.Helpers.FileHelper.CleanUpFile(System.String)">
+            <summary>
+            Delete files in directory
+            </summary>
+            <param name="filePattern">Pattern to match with</param>
+        </member>
+        <member name="M:BotDot.Helpers.FileHelper.DeleteExpiredFile(System.String)">
+            <summary>
+            Delete files in Directory that are older than 15 mins
+            </summary>
+            <param name="path">Directory Path</param>
+        </member>
+        <member name="T:BotDot.Helpers.ProcessHelper">
+            <summary>
+            Helper to Run Processes
+            </summary>
+        </member>
+        <member name="M:BotDot.Helpers.ProcessHelper.Run(System.String,System.String)">
+            <summary>
+            Run Process
+            </summary>
+            <param name="filename">Name of file to run</param>
+            <param name="arguements">Arguments</param>
+            <returns>Task</returns>
         </member>
         <member name="T:BotDot.Helpers.Time">
             <summary>
@@ -213,7 +263,7 @@
             Web host Start up
             </summary>
         </member>
-        <member name="M:BotDot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:BotDot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
             Initializes a new instance of the <see cref="T:BotDot.Startup"/> class.
             </summary>
@@ -222,6 +272,11 @@
         <member name="P:BotDot.Startup.Configuration">
             <summary>
             Gets Configuration
+            </summary>
+        </member>
+        <member name="P:BotDot.Startup.Env">
+            <summary>
+            Gets Env
             </summary>
         </member>
         <member name="M:BotDot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
