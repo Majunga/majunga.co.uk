@@ -7,6 +7,7 @@ namespace BotDot.Controllers
     using System;
     using System.Threading.Tasks;
     using BotDot.BusinessLogic.Bot;
+    using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Bot.Connector;
@@ -20,14 +21,20 @@ namespace BotDot.Controllers
     public class MessagesController : ControllerBase
     {
         private IConfiguration configuration;
+        private IDownloadFile download;
+        private IVideoConverter videoConverter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagesController"/> class.
         /// </summary>
         /// <param name="configuration">Configuration of Application</param>
-        public MessagesController(IConfiguration configuration)
+        /// <param name="download">Downloads files from Internet</param>
+        /// <param name="videoConverter">Video conversion</param>
+        public MessagesController(IConfiguration configuration, IDownloadFile download, IVideoConverter videoConverter)
         {
             this.configuration = configuration;
+            this.download = download;
+            this.videoConverter = videoConverter;
         }
 
         /// <summary>
@@ -49,10 +56,11 @@ namespace BotDot.Controllers
                 if (arguments.CanAction())
                 {
                     var command = arguments.GetCommand();
-
+                    var responseHandler = new BotResponseHandler(connector, activity);
                     switch (command)
                     {
                         case CommandHandler.Commands.Download:
+                            await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
                             break;
                         default:
                             break;

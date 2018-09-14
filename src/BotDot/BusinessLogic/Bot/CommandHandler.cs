@@ -4,12 +4,9 @@
 
 namespace BotDot.BusinessLogic.Bot
 {
-    using BotDot.BusinessLogic.Bot.Models;
-    using BotDot.BusinessLogic.Services.Interfaces;
-    using BotDot.Helpers;
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
+    using BotDot.BusinessLogic.Services.Interfaces;
 
     /// <summary>
     /// Command Handler
@@ -50,8 +47,8 @@ namespace BotDot.BusinessLogic.Bot
         /// Run actions for Download command
         /// </summary>
         /// <param name="args">ArgumentsHandler</param>
-        /// <param name="responses"></param>
-        /// <returns></returns>
+        /// <param name="responses">BotResponseHandler</param>
+        /// <returns>Task</returns>
         public async Task DownloadCommand(ArguementsHandler args, BotResponseHandler responses)
         {
             // Get arguments
@@ -76,8 +73,7 @@ namespace BotDot.BusinessLogic.Bot
             // Convert to mp4 and if needed trim file
             var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
 
-            // Clean up
-
+            // TODO Clean up
         }
     }
 }
