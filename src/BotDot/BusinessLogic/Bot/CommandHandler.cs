@@ -46,7 +46,13 @@ namespace BotDot.BusinessLogic.Bot
             Help
         }
 
-        public async Task DownloadCommand(ArguementsHandler args, BotResponses responses)
+        /// <summary>
+        /// Run actions for Download command
+        /// </summary>
+        /// <param name="args">ArgumentsHandler</param>
+        /// <param name="responses"></param>
+        /// <returns></returns>
+        public async Task DownloadCommand(ArguementsHandler args, BotResponseHandler responses)
         {
             // Get arguments
             var model = args.GetDownloadCommandArguements();

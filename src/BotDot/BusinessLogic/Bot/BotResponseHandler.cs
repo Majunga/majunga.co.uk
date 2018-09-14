@@ -10,17 +10,17 @@ namespace BotDot.BusinessLogic.Bot
     /// <summary>
     /// Response to user
     /// </summary>
-    public class BotResponses
+    public class BotResponseHandler
     {
         private ConnectorClient connector;
         private Activity activity;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BotResponses"/> class.
+        /// Initializes a new instance of the <see cref="BotResponseHandler"/> class.
         /// </summary>
         /// <param name="connector">Connector to User</param>
         /// <param name="activity">User Activity</param>
-        public BotResponses(ConnectorClient connector, Activity activity)
+        public BotResponseHandler(ConnectorClient connector, Activity activity)
         {
             this.connector = connector;
             this.activity = activity;
