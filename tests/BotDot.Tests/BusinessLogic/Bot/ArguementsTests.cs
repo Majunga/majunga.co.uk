@@ -1,6 +1,7 @@
 ﻿using BotDot.BusinessLogic.Bot;
 using BotDot.BusinessLogic.Bot.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -70,11 +71,9 @@ namespace BotDot.Tests.BusinessLogic.Bot
         public void GetDownloadCommandArguements_WhenArgIsUrl_ReturnUrlEnumAndValue()
         {
             var url = "https://google.com";
-            var result = new ArguementsHandler($"BoT download {url}").GetDownloadCommandArguements().FirstOrDefault();
+            var result = new ArguementsHandler($"BoT download {url}").GetDownloadCommandArguements()[Download.CommandArguements.Url];
 
-            var expected = Tuple.Create(Download.CommandArguements.Url, url);
-
-            Assert.True(result.Equals(expected));
+            Assert.Equal(result, url);
         }
 
         [Fact]
@@ -94,8 +93,8 @@ namespace BotDot.Tests.BusinessLogic.Bot
             var result = new ArguementsHandler($"BoT download --start {timeStart} --end {timeEnd}").GetDownloadCommandArguements();
 
             Assert.True(result.Count == 2);
-            Assert.True(result.FirstOrDefault(x => x.Item1 == Download.CommandArguements.Start).Item2 == timeStart);
-            Assert.True(result.FirstOrDefault(x => x.Item1 == Download.CommandArguements.End).Item2 == timeEnd);
+            Assert.True(result[Download.CommandArguements.Start] == timeStart);
+            Assert.True(result[Download.CommandArguements.End] == timeEnd);
         }
 
 
@@ -108,11 +107,9 @@ namespace BotDot.Tests.BusinessLogic.Bot
             var result = new ArguementsHandler($"BoT download --start {timeStart} --end {timeEnd}  {url}").GetDownloadCommandArguements();
 
             Assert.True(result.Count == 3);
-            Assert.True(result.FirstOrDefault(x => x.Item1 == Download.CommandArguements.Start).Item2 == timeStart);
-            Assert.True(result.FirstOrDefault(x => x.Item1 == Download.CommandArguements.End).Item2 == timeEnd);
-
-            var expectedUrlArg = Tuple.Create(Download.CommandArguements.Url, url);
-            Assert.True(result.FirstOrDefault(x => x.Item1 == Download.CommandArguements.Url).Equals(expectedUrlArg));
+            Assert.True(result[Download.CommandArguements.Start] == timeStart);
+            Assert.True(result[Download.CommandArguements.End] == timeEnd);
+            Assert.Equal(result[Download.CommandArguements.Url], url);
         }
     }
 }

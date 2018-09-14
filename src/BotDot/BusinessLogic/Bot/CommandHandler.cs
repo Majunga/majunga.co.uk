@@ -51,14 +51,14 @@ namespace BotDot.BusinessLogic.Bot
             // Get arguments
             var argumentAndValueList = args.GetDownloadCommandArguements();
 
-            if (!argumentAndValueList.Any(x => x.Item1 == Download.CommandArguements.Url))
+            if (!argumentAndValueList.Any(x => x.Key == Download.CommandArguements.Url))
             {
                 await responses.SendMessage("Failed No Url specified");
                 return;
             }
 
-            var startTime = argumentAndValueList.GetValue(Download.CommandArguements.Start);
-            var endTime = argumentAndValueList.GetValue(Download.CommandArguements.End);
+            var startTime = argumentAndValueList[Download.CommandArguements.Start];
+            var endTime = argumentAndValueList[Download.CommandArguements.End];
 
             if (!string.IsNullOrWhiteSpace(startTime) && Time.Validate(startTime) )
             {
@@ -73,7 +73,7 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Download file
-            if (!Uri.TryCreate(argumentAndValueList.GetValue(Download.CommandArguements.Url), UriKind.RelativeOrAbsolute, out Uri uri))
+            if (!Uri.TryCreate(argumentAndValueList[Download.CommandArguements.Url], UriKind.RelativeOrAbsolute, out Uri uri))
             {
                 await responses.SendMessage("Failed invalid Url specified");
                 return;

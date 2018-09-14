@@ -62,9 +62,9 @@ namespace BotDot.BusinessLogic.Bot
         /// Get Tuple list of Download Arguments and there values
         /// </summary>
         /// <returns>List of Tuple of Download Arguments * Argument Value</returns>
-        public List<Tuple<Download.CommandArguements, string>> GetDownloadCommandArguements()
+        public Dictionary<Download.CommandArguements, string> GetDownloadCommandArguements()
         {
-            var arguementsAndValues = new List<Tuple<Download.CommandArguements, string>>();
+            var arguementsAndValues = new Dictionary<Download.CommandArguements, string>();
 
             if (this.args.Count <= 2)
             {
@@ -75,7 +75,7 @@ namespace BotDot.BusinessLogic.Bot
             {
                 if (this.args[i].StartsWith("--") && Enum.TryParse(this.args[i].Replace("--", string.Empty), true, out Download.CommandArguements parsedCommands))
                 {
-                    arguementsAndValues.Add(Tuple.Create(parsedCommands, this.args[i + 1]));
+                    arguementsAndValues.Add(parsedCommands, this.args[i + 1]);
                 }
             }
 
@@ -83,7 +83,7 @@ namespace BotDot.BusinessLogic.Bot
 
             if (Uri.IsWellFormedUriString(urlStr, UriKind.RelativeOrAbsolute))
             {
-                arguementsAndValues.Add(Tuple.Create(Download.CommandArguements.Url, urlStr));
+                arguementsAndValues.Add(Download.CommandArguements.Url, urlStr);
             }
 
             return arguementsAndValues;
