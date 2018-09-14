@@ -28,7 +28,7 @@ namespace BotDot
         /// <returns>Web Host Builder</returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            
+                .UseKestrel(options => options.ListenAnyIP(3978))
                 .UseStartup<Startup>();
     }
 }
