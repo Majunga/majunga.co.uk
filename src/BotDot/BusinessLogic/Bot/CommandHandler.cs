@@ -64,14 +64,20 @@ namespace BotDot.BusinessLogic.Bot
             // Download file
             var file = await this.download.DownloadVideo(model.Uri);
 
-            if (file == null)
+            if (!file.Exists)
             {
                 await responses.SendMessage("Failed to download Video.");
                 return;
             }
 
             // Convert to mp4 and if needed trim file
-            var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
+            var formattedVideo = await this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
+
+            if (!formattedVideo.Exists)
+            {
+                await responses.SendMessage("Failed to format Video.");
+                return;
+            }
 
             // Clean up
             if (file.Exists)

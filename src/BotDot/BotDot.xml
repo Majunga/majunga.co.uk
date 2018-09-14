@@ -215,6 +215,13 @@
             </summary>
             <param name="path">Directory Path</param>
         </member>
+        <member name="M:BotDot.Helpers.FileHelper.GetFullPath(System.String)">
+            <summary>
+            Gets the full path of a Directory or defaults to current Directories full path
+            </summary>
+            <param name="path">Partial path</param>
+            <returns>Full Path</returns>
+        </member>
         <member name="T:BotDot.Helpers.ProcessHelper">
             <summary>
             Helper to Run Processes

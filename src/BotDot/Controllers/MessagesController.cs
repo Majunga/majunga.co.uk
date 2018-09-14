@@ -4,14 +4,14 @@
 
 namespace BotDot.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
     using BotDot.BusinessLogic.Bot;
     using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Bot.Connector;
     using Microsoft.Extensions.Configuration;
+    using System;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Bot Messages controller
@@ -63,6 +63,12 @@ namespace BotDot.Controllers
                             await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
                             break;
                         default:
+                            var message = "**Bot Help**\n";
+                            message += "Usage: bot download [Optional Commands] [Youtube URL]\n";
+                            message += "Where [Commands] is one of:\n";
+                            message += "*--start HH:MM:SS*\n";
+                            message += "*--end HH:MM:SS*\n";
+                            await responseHandler.SendMessage(message);
                             break;
                     }
                 }
