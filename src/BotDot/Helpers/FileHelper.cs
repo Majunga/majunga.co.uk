@@ -31,7 +31,7 @@ namespace BotDot.Helpers
         /// Delete files in Directory that are older than 15 mins
         /// </summary>
         /// <param name="path">Directory Path</param>
-        public void DeleteExpiredFile(string path)
+        public static void DeleteExpiredFile(string path)
         {
             foreach (var file in Directory.GetFiles(path))
             {

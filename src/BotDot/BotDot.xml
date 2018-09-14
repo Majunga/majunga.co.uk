@@ -4,6 +4,32 @@
         <name>BotDot</name>
     </assembly>
     <members>
+        <member name="T:BotDot.BackgroundTasks.DeleteExpiredDownloads">
+            <summary>
+            Deletes Expired Downloads, so server storages isn't filleds
+            </summary>
+        </member>
+        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.BackgroundTasks.DeleteExpiredDownloads"/> class.
+            </summary>
+            <param name="env">Environment Param</param>
+        </member>
+        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.StartAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.StopAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.DoWork(System.Object)">
+            <summary>
+            Clear up files
+            </summary>
+            <param name="state">Static of Service</param>
+        </member>
+        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="T:BotDot.BusinessLogic.Bot.ArguementsHandler">
             <summary>
             Get Arguments from string message
@@ -275,6 +301,7 @@
             Initializes a new instance of the <see cref="T:BotDot.Startup"/> class.
             </summary>
             <param name="configuration">Configration of Host</param>
+            <param name="env">Env</param>
         </member>
         <member name="P:BotDot.Startup.Configuration">
             <summary>

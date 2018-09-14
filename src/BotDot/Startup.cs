@@ -4,6 +4,7 @@
 
 namespace BotDot
 {
+    using BotDot.BackgroundTasks;
     using BotDot.BusinessLogic.Services;
     using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,6 +24,7 @@ namespace BotDot
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
         /// <param name="configuration">Configration of Host</param>
+        /// <param name="env">Env</param>
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this.Configuration = configuration;
@@ -47,6 +49,7 @@ namespace BotDot
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            var staticFolderLocation = $"{this.Env.WebRootPath}/static";
 
             // Set up Bot
             services.AddSingleton(_ => this.Configuration);
@@ -65,8 +68,11 @@ namespace BotDot
             services.AddSingleton(typeof(ICredentialProvider), credentialProvider);
 
             // Set up Dependencies
-            services.AddScoped<IYoutubeDownload>((options) => new Youtube_Dl($"{this.Env.WebRootPath}/static"));
-            services.AddScoped<IVideoConverter>((options) => new FFMpeg($"{this.Env.WebRootPath}/static"));
+            services.AddScoped<IYoutubeDownload>((options) => new Youtube_Dl(staticFolderLocation));
+            services.AddScoped<IVideoConverter>((options) => new FFMpeg(staticFolderLocation));
+
+            // Timed Services
+            services.AddHostedService<DeleteExpiredDownloads>();
 
             services.AddMvc(options =>
             {
