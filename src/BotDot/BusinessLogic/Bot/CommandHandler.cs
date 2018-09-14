@@ -51,35 +51,17 @@ namespace BotDot.BusinessLogic.Bot
             // Get arguments
             var argumentAndValueList = args.GetDownloadCommandArguements();
 
-            if (!argumentAndValueList.Any(x => x.Key == Download.CommandArguements.Url))
-            {
-                await responses.SendMessage("Failed No Url specified");
-                return;
-            }
+            var model = new Download();
+            var result = model.MapAndValidate(argumentAndValueList);
 
-            var startTime = argumentAndValueList[Download.CommandArguements.Start];
-            var endTime = argumentAndValueList[Download.CommandArguements.End];
-
-            if (!string.IsNullOrWhiteSpace(startTime) && Time.Validate(startTime) )
+            if (!result.Item1)
             {
-                await responses.SendMessage("Failed Start time is invalid. All times should be in HH:MM:SS format");
-                return;
-            }
-
-            if (!string.IsNullOrWhiteSpace(endTime) && Time.Validate(endTime))
-            {
-                await responses.SendMessage("Failed End time is invalid. All times should be in HH:MM:SS format");
+                await responses.SendMessage(result.Item2);
                 return;
             }
 
             // Download file
-            if (!Uri.TryCreate(argumentAndValueList[Download.CommandArguements.Url], UriKind.RelativeOrAbsolute, out Uri uri))
-            {
-                await responses.SendMessage("Failed invalid Url specified");
-                return;
-            }
-
-            var file = this.download.YouTubeVideo(uri);
+            var file = this.download.YouTubeVideo(model.Uri);
 
             if (file == null)
             {
@@ -88,9 +70,10 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Convert to mp4 and if needed trim file
-            var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(startTime, endTime));
+            var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
 
             // Clean up
+
         }
     }
 }

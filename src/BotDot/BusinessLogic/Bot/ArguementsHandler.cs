@@ -4,10 +4,10 @@
 
 namespace BotDot.BusinessLogic.Bot
 {
-    using BotDot.BusinessLogic.Bot.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BotDot.BusinessLogic.Bot.Models;
 
     /// <summary>
     /// Get Arguments from string message
@@ -59,9 +59,9 @@ namespace BotDot.BusinessLogic.Bot
         }
 
         /// <summary>
-        /// Get Tuple list of Download Arguments and there values
+        /// Get Dictionary of Download Arguments and there values
         /// </summary>
-        /// <returns>List of Tuple of Download Arguments * Argument Value</returns>
+        /// <returns>Dictionary Download Arguments * Argument Value</returns>
         public Dictionary<Download.CommandArguements, string> GetDownloadCommandArguements()
         {
             var arguementsAndValues = new Dictionary<Download.CommandArguements, string>();

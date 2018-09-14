@@ -29,9 +29,9 @@
         </member>
         <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.GetDownloadCommandArguements">
             <summary>
-            Get Tuple list of Download Arguments and there values
+            Get Dictionary of Download Arguments and there values
             </summary>
-            <returns>List of Tuple of Download Arguments * Argument Value</returns>
+            <returns>Dictionary Download Arguments * Argument Value</returns>
         </member>
         <member name="T:BotDot.BusinessLogic.Bot.BotResponses">
             <summary>
@@ -79,19 +79,6 @@
             Help section
             </summary>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.Models.DownloadExtension">
-            <summary>
-            Download static Methods and Extension
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Bot.Models.DownloadExtension.GetValue(System.Collections.Generic.List{System.Tuple{BotDot.BusinessLogic.Bot.Models.Download.CommandArguements,System.String}},BotDot.BusinessLogic.Bot.Models.Download.CommandArguements)">
-            <summary>
-            Get Value of Command Arguments Tuple List
-            </summary>
-            <param name="tupleList">Command Arguments * Values List</param>
-            <param name="command">Commands Value to extract</param>
-            <returns>Value</returns>
-        </member>
         <member name="T:BotDot.BusinessLogic.Bot.Models.Download">
             <summary>
             Download Model and methods
@@ -115,6 +102,21 @@
         <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.End">
             <summary>
             Time to end video from
+            </summary>
+        </member>
+        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.Uri">
+            <summary>
+            Gets or sets url to use
+            </summary>
+        </member>
+        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.Start">
+            <summary>
+            Gets or sets start Time
+            </summary>
+        </member>
+        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.End">
+            <summary>
+            Gets or sets end Time
             </summary>
         </member>
         <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile">

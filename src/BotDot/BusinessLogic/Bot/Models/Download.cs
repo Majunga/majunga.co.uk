@@ -3,23 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    /// <summary>
-    /// Download static Methods and Extension
-    /// </summary>
-    public static class DownloadExtension
-    {
-        /// <summary>
-        /// Get Value of Command Arguments Tuple List
-        /// </summary>
-        /// <param name="tupleList">Command Arguments * Values List</param>
-        /// <param name="command">Commands Value to extract</param>
-        /// <returns>Value</returns>
-        public static string GetValue(this List<Tuple<Download.CommandArguements, string>> tupleList, Download.CommandArguements command)
-        {
-            return tupleList.FirstOrDefault(x => x.Item1 == command)?.Item2 ?? string.Empty;
-        }
-    }
+    using BotDot.Helpers;
 
     /// <summary>
     /// Download Model and methods
@@ -47,9 +31,51 @@
             End
         }
 
-        public Tuple<bool, string> Validate(Dictionary<CommandArguements, string> argsKeyValuePairs)
+        /// <summary>
+        /// Gets or sets url to use
+        /// </summary>
+        public Uri Uri { get; set; }
+
+        /// <summary>
+        /// Gets or sets start Time
+        /// </summary>
+        public string Start { get; set; }
+
+        /// <summary>
+        /// Gets or sets end Time
+        /// </summary>
+        public string End { get; set; }
+
+        public Tuple<bool, string> MapAndValidate(Dictionary<CommandArguements, string> argsKeyValuePairs)
         {
-            return null;
+            if (!argsKeyValuePairs.Any(x => x.Key == CommandArguements.Url))
+            {
+                return Tuple.Create(false, "Failed No Url specified");
+            }
+
+            if(!Uri.TryCreate(argsKeyValuePairs[CommandArguements.Url], UriKind.RelativeOrAbsolute, out Uri uri))
+            {
+                return Tuple.Create(false, "Failed Invalid Url");
+            }
+
+            var startTime = argsKeyValuePairs[CommandArguements.Start];
+            var endTime = argsKeyValuePairs[CommandArguements.End];
+
+            if (!string.IsNullOrWhiteSpace(startTime) && Time.Validate(startTime))
+            {
+                return Tuple.Create(false, "Failed Start time is invalid. All times should be in HH:MM:SS format");
+            }
+
+            if (!string.IsNullOrWhiteSpace(endTime) && Time.Validate(endTime))
+            {
+                return Tuple.Create(false, "Failed End time is invalid. All times should be in HH:MM:SS format");
+            }
+
+            this.Uri = uri;
+            this.Start = startTime;
+            this.End = endTime;
+
+            return Tuple.Create(true, string.Empty);
         }
     }
 }
