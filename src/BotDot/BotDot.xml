@@ -33,19 +33,19 @@
             </summary>
             <returns>Dictionary Download Arguments * Argument Value</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.BotResponses">
+        <member name="T:BotDot.BusinessLogic.Bot.BotResponseHandler">
             <summary>
             Response to user
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponses.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.BotResponses"/> class.
+            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.BotResponseHandler"/> class.
             </summary>
             <param name="connector">Connector to User</param>
             <param name="activity">User Activity</param>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponses.SendMessage(System.String)">
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendMessage(System.String)">
             <summary>
             Send Message to User
             </summary>
@@ -78,6 +78,14 @@
             <summary>
             Help section
             </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommand(BotDot.BusinessLogic.Bot.ArguementsHandler,BotDot.BusinessLogic.Bot.BotResponseHandler)">
+            <summary>
+            Run actions for Download command
+            </summary>
+            <param name="args">ArgumentsHandler</param>
+            <param name="responses">BotResponseHandler</param>
+            <returns>Task</returns>
         </member>
         <member name="T:BotDot.BusinessLogic.Bot.Models.Download">
             <summary>
@@ -155,11 +163,13 @@
             Bot Messages controller
             </summary>
         </member>
-        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,BotDot.BusinessLogic.Services.Interfaces.IDownloadFile,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
             Initializes a new instance of the <see cref="T:BotDot.Controllers.MessagesController"/> class.
             </summary>
             <param name="configuration">Configuration of Application</param>
+            <param name="download">Downloads files from Internet</param>
+            <param name="videoConverter">Video conversion</param>
         </member>
         <member name="M:BotDot.Controllers.MessagesController.Post(Microsoft.Bot.Connector.Activity)">
             <summary>
@@ -175,10 +185,57 @@
         </member>
         <member name="M:BotDot.Helpers.Time.Validate(System.String)">
             <summary>
-            Validate Time 
+            Validate Time
             </summary>
             <param name="timeStr">String of Time, Expects HH:MM:SS</param>
             <returns>Bool</returns>
+        </member>
+        <member name="T:BotDot.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:BotDot.Program.Main(System.String[])">
+            <summary>
+            Entry point of program
+            </summary>
+            <param name="args">Command Line Args</param>
+        </member>
+        <member name="M:BotDot.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creater of Web host
+            </summary>
+            <param name="args">Cmd line Args</param>
+            <returns>Web Host Builder</returns>
+        </member>
+        <member name="T:BotDot.Startup">
+            <summary>
+            Web host Start up
+            </summary>
+        </member>
+        <member name="M:BotDot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.Startup"/> class.
+            </summary>
+            <param name="configuration">Configration of Host</param>
+        </member>
+        <member name="P:BotDot.Startup.Configuration">
+            <summary>
+            Gets Configuration
+            </summary>
+        </member>
+        <member name="M:BotDot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">Services Collection</param>
+        </member>
+        <member name="M:BotDot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">Application Builder</param>
+            <param name="env">Hosting Environment</param>
         </member>
     </members>
 </doc>

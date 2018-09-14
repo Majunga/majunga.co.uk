@@ -4,9 +4,9 @@
 
 namespace BotDot.BusinessLogic.Bot.Models
 {
-    using BotDot.Helpers;
     using System;
     using System.Globalization;
+    using BotDot.Helpers;
 
     /// <summary>
     /// Download Model and methods
@@ -74,7 +74,6 @@ namespace BotDot.BusinessLogic.Bot.Models
                 && !string.IsNullOrWhiteSpace(this.End)
                 && DateTime.TryParseExact(this.Start, "HH:mm:ss", CultureInfo.InvariantCulture, style: DateTimeStyles.None, result: out DateTime startDateTime)
                 && DateTime.TryParseExact(this.End, "HH:mm:ss", CultureInfo.InvariantCulture, style: DateTimeStyles.None, result: out DateTime endDateTime))
-
             {
                 if (startDateTime.TimeOfDay > endDateTime.TimeOfDay)
                 {

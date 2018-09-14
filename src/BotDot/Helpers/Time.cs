@@ -1,4 +1,8 @@
-﻿namespace BotDot.Helpers
+﻿// <copyright file="Time.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
+
+namespace BotDot.Helpers
 {
     using System;
     using System.Text.RegularExpressions;
@@ -9,7 +13,7 @@
     public static class Time
     {
         /// <summary>
-        /// Validate Time 
+        /// Validate Time
         /// </summary>
         /// <param name="timeStr">String of Time, Expects HH:MM:SS</param>
         /// <returns>Bool</returns>

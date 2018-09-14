@@ -1,4 +1,4 @@
-﻿// <copyright file="MessageController.cs" company="Majunga.co.uk">
+﻿// <copyright file="MessagesController.cs" company="Majunga.co.uk">
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
@@ -68,8 +68,8 @@ namespace BotDot.Controllers
                 }
 
                 // return our reply to the user
-                //var reply = activity.CreateReply("HelloWorld");
-                //await connector.Conversations.ReplyToActivityAsync(reply);
+                // var reply = activity.CreateReply("HelloWorld");
+                // await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else
             {

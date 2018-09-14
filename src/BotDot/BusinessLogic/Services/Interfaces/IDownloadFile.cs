@@ -1,4 +1,4 @@
-﻿// <copyright file="IDownload.cs" company="Majunga.co.uk">
+﻿// <copyright file="IDownloadFile.cs" company="Majunga.co.uk">
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 

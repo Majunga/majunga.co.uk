@@ -1,4 +1,4 @@
-﻿// <copyright file="BotResponses.cs" company="Majunga.co.uk">
+﻿// <copyright file="BotResponseHandler.cs" company="Majunga.co.uk">
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
