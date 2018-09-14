@@ -6,6 +6,7 @@ namespace BotDot.BusinessLogic.Bot
 {
     using BotDot.BusinessLogic.Bot.Models;
     using BotDot.BusinessLogic.Services.Interfaces;
+    using BotDot.Helpers;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
@@ -45,8 +46,6 @@ namespace BotDot.BusinessLogic.Bot
             Help
         }
 
-
-
         public async Task DownloadCommand(ArguementsHandler args, BotResponses responses)
         {
             // Get arguments
@@ -61,8 +60,17 @@ namespace BotDot.BusinessLogic.Bot
             var startTime = argumentAndValueList.GetValue(Download.CommandArguements.Start);
             var endTime = argumentAndValueList.GetValue(Download.CommandArguements.End);
 
+            if (!string.IsNullOrWhiteSpace(startTime) && Time.Validate(startTime) )
+            {
+                await responses.SendMessage("Failed Start time is invalid. All times should be in HH:MM:SS format");
+                return;
+            }
 
-
+            if (!string.IsNullOrWhiteSpace(endTime) && Time.Validate(endTime))
+            {
+                await responses.SendMessage("Failed End time is invalid. All times should be in HH:MM:SS format");
+                return;
+            }
 
             // Download file
             if (!Uri.TryCreate(argumentAndValueList.GetValue(Download.CommandArguements.Url), UriKind.RelativeOrAbsolute, out Uri uri))
@@ -80,9 +88,7 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Convert to mp4 and if needed trim file
-
-
-            var formattedVideo = this.videoConverter.ConvertToMp4(file, times);
+            var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(startTime, endTime));
 
             // Clean up
         }

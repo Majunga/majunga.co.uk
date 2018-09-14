@@ -33,12 +33,31 @@
             </summary>
             <returns>List of Tuple of Download Arguments * Argument Value</returns>
         </member>
+        <member name="T:BotDot.BusinessLogic.Bot.BotResponses">
+            <summary>
+            Response to user
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponses.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.BotResponses"/> class.
+            </summary>
+            <param name="connector">Connector to User</param>
+            <param name="activity">User Activity</param>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponses.SendMessage(System.String)">
+            <summary>
+            Send Message to User
+            </summary>
+            <param name="message">Message to send</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:BotDot.BusinessLogic.Bot.CommandHandler">
             <summary>
             Command Handler
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IDownloadFile,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
             Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.CommandHandler"/> class.
             </summary>
@@ -60,32 +79,45 @@
             Help section
             </summary>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements">
+        <member name="T:BotDot.BusinessLogic.Bot.Models.Download">
+            <summary>
+            Download Model and Extention
+            </summary>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements">
             <summary>
             Download Command Arguements
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.Url">
+        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.Url">
             <summary>
             Url of file to download, last arguement
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.Start">
+        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.Start">
             <summary>
             Time to start video from
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommandArguements.End">
+        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.End">
             <summary>
             Time to end video from
             </summary>
         </member>
-        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownload">
+        <member name="M:BotDot.BusinessLogic.Bot.Models.Download.GetValue(System.Collections.Generic.List{System.Tuple{BotDot.BusinessLogic.Bot.Models.Download.CommandArguements,System.String}},BotDot.BusinessLogic.Bot.Models.Download.CommandArguements)">
+            <summary>
+            Get Value of Command Arguments Tuple List
+            </summary>
+            <param name="tupleList">Command Arguments * Values List</param>
+            <param name="command">Commands Value to extract</param>
+            <returns>Value</returns>
+        </member>
+        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile">
             <summary>
             Downloads files from the internet
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IDownload.YouTubeVideo(System.Uri)">
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile.YouTubeVideo(System.Uri)">
             <summary>
             Download YouTube video
             </summary>
@@ -97,7 +129,7 @@
             Converts video formats
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter.ConvertToMp4(System.IO.File,System.Object)">
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter.ConvertToMp4(System.IO.FileInfo,System.Tuple{System.String,System.String})">
             <summary>
             Convert any video type to MP4
             </summary>
@@ -122,6 +154,18 @@
             </summary>
             <param name="activity">Activatity object</param>
             <returns>Action Result</returns>
+        </member>
+        <member name="T:BotDot.Helpers.Time">
+            <summary>
+            time Helpers
+            </summary>
+        </member>
+        <member name="M:BotDot.Helpers.Time.Validate(System.String)">
+            <summary>
+            Validate Time 
+            </summary>
+            <param name="timeStr">String of Time, Expects HH:MM:SS</param>
+            <returns>Bool</returns>
         </member>
     </members>
 </doc>
