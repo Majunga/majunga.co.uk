@@ -4,7 +4,7 @@ services:
     build: ./src/Frontend
     ports:
       - "3000:3000"
-  bot:
-    build: ./src/bot
+  backend:
+    build: ./src/Backend
     ports:
       - "3978:3978"

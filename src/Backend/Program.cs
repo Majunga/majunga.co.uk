@@ -28,6 +28,7 @@ namespace BotDot
         /// <returns>Web Host Builder</returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            
                 .UseStartup<Startup>();
     }
 }

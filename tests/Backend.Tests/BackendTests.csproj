@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BotDot\BotDot.csproj" />
+    <ProjectReference Include="..\..\src\Backend\Backend.csproj" />
   </ItemGroup>
 
 </Project>

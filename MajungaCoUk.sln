@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FrontEnd", "src\Frontend\FrontEnd.njsproj", "{73C6C799-C4E1-4F80-9536-4114FC3DECCD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotDot", "src\BotDot\BotDot.csproj", "{122A4B7B-6324-4DF5-B352-C4690DEE3E61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "src\Backend\Backend.csproj", "{122A4B7B-6324-4DF5-B352-C4690DEE3E61}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CCCB5B1C-24FD-4B7E-AE2B-75C683A02880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotDot.Tests", "tests\BotDot.Tests\BotDot.Tests.csproj", "{EFEEF19E-15E0-43D9-B1A0-0DB1BD45A413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "tests\Backend.Tests\BackendTests.csproj", "{EFEEF19E-15E0-43D9-B1A0-0DB1BD45A413}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
