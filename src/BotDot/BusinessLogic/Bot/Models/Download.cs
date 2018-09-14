@@ -4,8 +4,9 @@
 
 namespace BotDot.BusinessLogic.Bot.Models
 {
-    using System;
     using BotDot.Helpers;
+    using System;
+    using System.Globalization;
 
     /// <summary>
     /// Download Model and methods
@@ -59,14 +60,26 @@ namespace BotDot.BusinessLogic.Bot.Models
                 return Tuple.Create(false, "Failed Url not specified or invalid");
             }
 
-           if (!string.IsNullOrWhiteSpace(this.Start) && Time.Validate(this.Start))
+            if (!string.IsNullOrWhiteSpace(this.Start) && !Time.Validate(this.Start))
             {
                 return Tuple.Create(false, "Failed Start time is invalid. All times should be in HH:MM:SS format");
             }
 
-            if (!string.IsNullOrWhiteSpace(this.End) && Time.Validate(this.End))
+            if (!string.IsNullOrWhiteSpace(this.End) && !Time.Validate(this.End))
             {
                 return Tuple.Create(false, "Failed End time is invalid. All times should be in HH:MM:SS format");
+            }
+
+            if (!string.IsNullOrWhiteSpace(this.Start)
+                && !string.IsNullOrWhiteSpace(this.End)
+                && DateTime.TryParseExact(this.Start, "HH:mm:ss", CultureInfo.InvariantCulture, style: DateTimeStyles.None, result: out DateTime startDateTime)
+                && DateTime.TryParseExact(this.End, "HH:mm:ss", CultureInfo.InvariantCulture, style: DateTimeStyles.None, result: out DateTime endDateTime))
+
+            {
+                if (startDateTime.TimeOfDay > endDateTime.TimeOfDay)
+                {
+                    return Tuple.Create(false, "Failed End time cannot be greater than Start time");
+                }
             }
 
             return Tuple.Create(true, string.Empty);
