@@ -62,6 +62,8 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Download file
+            await responses.SendMessage("Downloading video");
+
             var file = await this.download.DownloadVideo(model.Uri);
 
             if (!file.Exists)
@@ -71,6 +73,8 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Convert to mp4 and if needed trim file
+            await responses.SendMessage("Formating video");
+
             var formattedVideo = await this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
 
             if (!formattedVideo.Exists)
@@ -78,6 +82,8 @@ namespace BotDot.BusinessLogic.Bot
                 await responses.SendMessage("Failed to format Video.");
                 return;
             }
+
+            await responses.SendMessage($"Done! {Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
 
             // Clean up
             if (file.Exists)
