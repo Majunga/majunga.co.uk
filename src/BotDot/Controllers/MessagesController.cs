@@ -21,7 +21,7 @@ namespace BotDot.Controllers
     public class MessagesController : ControllerBase
     {
         private IConfiguration configuration;
-        private IDownloadFile download;
+        private IYoutubeDownload download;
         private IVideoConverter videoConverter;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace BotDot.Controllers
         /// <param name="configuration">Configuration of Application</param>
         /// <param name="download">Downloads files from Internet</param>
         /// <param name="videoConverter">Video conversion</param>
-        public MessagesController(IConfiguration configuration, IDownloadFile download, IVideoConverter videoConverter)
+        public MessagesController(IConfiguration configuration, IYoutubeDownload download, IVideoConverter videoConverter)
         {
             this.configuration = configuration;
             this.download = download;

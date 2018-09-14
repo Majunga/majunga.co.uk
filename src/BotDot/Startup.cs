@@ -4,6 +4,8 @@
 
 namespace BotDot
 {
+    using BotDot.BusinessLogic.Services;
+    using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -21,15 +23,21 @@ namespace BotDot
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
         /// <param name="configuration">Configration of Host</param>
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this.Configuration = configuration;
+            this.Env = env;
         }
 
         /// <summary>
         /// Gets Configuration
         /// </summary>
         public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Gets Env
+        /// </summary>
+        public IHostingEnvironment Env { get; }
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -39,6 +47,8 @@ namespace BotDot
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+
+            // Set up Bot
             services.AddSingleton(_ => this.Configuration);
             var credentialProvider = new StaticCredentialProvider(
                 this.Configuration.GetSection(MicrosoftAppCredentials.MicrosoftAppIdKey)?.Value,
@@ -53,6 +63,11 @@ namespace BotDot
                     .AddBotAuthentication(credentialProvider);
 
             services.AddSingleton(typeof(ICredentialProvider), credentialProvider);
+
+            // Set up Dependencies
+            services.AddScoped<IYoutubeDownload>((options) => new Youtube_Dl($"{this.Env.WebRootPath}/static"));
+            services.AddScoped<IVideoConverter>((options) => new FFMpeg($"{this.Env.WebRootPath}/static"));
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(TrustServiceUrlAttribute));

@@ -13,7 +13,7 @@ namespace BotDot.BusinessLogic.Bot
     /// </summary>
     public class CommandHandler
     {
-        private readonly IDownloadFile download;
+        private readonly IYoutubeDownload download;
         private readonly IVideoConverter videoConverter;
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace BotDot.BusinessLogic.Bot
         /// </summary>
         /// <param name="download">Downloads files from Internet</param>
         /// <param name="videoConverter">Video conversion</param>
-        public CommandHandler(IDownloadFile download, IVideoConverter videoConverter)
+        public CommandHandler(IYoutubeDownload download, IVideoConverter videoConverter)
         {
             this.download = download;
             this.videoConverter = videoConverter;
@@ -62,7 +62,7 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             // Download file
-            var file = this.download.YouTubeVideo(model.Uri);
+            var file = await this.download.DownloadVideo(model.Uri);
 
             if (file == null)
             {
@@ -73,7 +73,11 @@ namespace BotDot.BusinessLogic.Bot
             // Convert to mp4 and if needed trim file
             var formattedVideo = this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
 
-            // TODO Clean up
+            // Clean up
+            if (file.Exists)
+            {
+                file.Delete();
+            }
         }
     }
 }
