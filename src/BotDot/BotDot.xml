@@ -119,6 +119,12 @@
             Gets or sets end Time
             </summary>
         </member>
+        <member name="M:BotDot.BusinessLogic.Bot.Models.Download.Validate">
+            <summary>
+            Map values to model and validate
+            </summary>
+            <returns>Success * Message</returns>
+        </member>
         <member name="T:BotDot.BusinessLogic.Services.Interfaces.IDownloadFile">
             <summary>
             Downloads files from the internet

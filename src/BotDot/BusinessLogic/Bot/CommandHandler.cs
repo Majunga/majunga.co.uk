@@ -49,10 +49,8 @@ namespace BotDot.BusinessLogic.Bot
         public async Task DownloadCommand(ArguementsHandler args, BotResponses responses)
         {
             // Get arguments
-            var argumentAndValueList = args.GetDownloadCommandArguements();
-
-            var model = new Download();
-            var result = model.MapAndValidate(argumentAndValueList);
+            var model = args.GetDownloadCommandArguements();
+            var result = model.Validate();
 
             if (!result.Item1)
             {

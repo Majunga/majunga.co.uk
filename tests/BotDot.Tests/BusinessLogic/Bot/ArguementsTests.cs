@@ -64,25 +64,25 @@ namespace BotDot.Tests.BusinessLogic.Bot
         [Fact]
         public void GetDownloadCommandArguements_WhenNoArguementsReturnEmptyList()
         {
-            Assert.True(new ArguementsHandler("BoT download").GetDownloadCommandArguements().Count == 0);
+            Assert.Null(new ArguementsHandler("BoT download").GetDownloadCommandArguements());
         }
 
         [Fact]
         public void GetDownloadCommandArguements_WhenArgIsUrl_ReturnUrlEnumAndValue()
         {
-            var url = "https://google.com";
-            var result = new ArguementsHandler($"BoT download {url}").GetDownloadCommandArguements()[Download.CommandArguements.Url];
+            var uri = "https://google.com";
+            var result = new ArguementsHandler($"BoT download {uri}").GetDownloadCommandArguements().Uri;
 
-            Assert.Equal(result, url);
+            Assert.Equal(result, new Uri(uri));
         }
 
         [Fact]
         public void GetDownloadCommandArguements_WhenArgIsBadUrl_ReturnNoUrl()
         {
-            var url = "https://googlcom%";
-            var result = new ArguementsHandler($"BoT download {url}").GetDownloadCommandArguements();
+            var uri = "https://googlcom%";
+            var result = new ArguementsHandler($"BoT download {uri}").GetDownloadCommandArguements();
 
-            Assert.True(result.Count == 0);
+            Assert.Null(result.Uri);
         }
 
         [Fact]
@@ -92,24 +92,22 @@ namespace BotDot.Tests.BusinessLogic.Bot
             var timeEnd = "00:00:10";
             var result = new ArguementsHandler($"BoT download --start {timeStart} --end {timeEnd}").GetDownloadCommandArguements();
 
-            Assert.True(result.Count == 2);
-            Assert.True(result[Download.CommandArguements.Start] == timeStart);
-            Assert.True(result[Download.CommandArguements.End] == timeEnd);
+            Assert.True(result.Start == timeStart);
+            Assert.True(result.End == timeEnd);
         }
 
 
         [Fact]
         public void GetDownloadCommandArguements_WhenAllArguementsAreSpecified_ReturnAll()
         {
-            var url = "https://google.com";
+            var uri = "https://google.com";
             var timeStart = "00:00:01";
             var timeEnd = "00:00:10";
-            var result = new ArguementsHandler($"BoT download --start {timeStart} --end {timeEnd}  {url}").GetDownloadCommandArguements();
+            var result = new ArguementsHandler($"BoT download --start {timeStart} --end {timeEnd}  {uri}").GetDownloadCommandArguements();
 
-            Assert.True(result.Count == 3);
-            Assert.True(result[Download.CommandArguements.Start] == timeStart);
-            Assert.True(result[Download.CommandArguements.End] == timeEnd);
-            Assert.Equal(result[Download.CommandArguements.Url], url);
+            Assert.True(result.Start == timeStart);
+            Assert.True(result.End == timeEnd);
+            Assert.Equal(result.Uri, new Uri(uri));
         }
     }
 }

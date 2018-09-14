@@ -62,31 +62,39 @@ namespace BotDot.BusinessLogic.Bot
         /// Get Dictionary of Download Arguments and there values
         /// </summary>
         /// <returns>Dictionary Download Arguments * Argument Value</returns>
-        public Dictionary<Download.CommandArguements, string> GetDownloadCommandArguements()
+        public Download GetDownloadCommandArguements()
         {
-            var arguementsAndValues = new Dictionary<Download.CommandArguements, string>();
+            var model = new Download();
 
             if (this.args.Count <= 2)
             {
-                return arguementsAndValues;
+                return null;
             }
 
             for (var i = 2; i < this.args.Count; i++)
             {
                 if (this.args[i].StartsWith("--") && Enum.TryParse(this.args[i].Replace("--", string.Empty), true, out Download.CommandArguements parsedCommands))
                 {
-                    arguementsAndValues.Add(parsedCommands, this.args[i + 1]);
+                    switch (parsedCommands)
+                    {
+                        case Download.CommandArguements.Start:
+                            model.Start = this.args[i + 1];
+                            break;
+                        case Download.CommandArguements.End:
+                            model.End = this.args[i + 1];
+                            break;
+                    }
                 }
             }
 
-            var urlStr = this.args.LastOrDefault();
+            var uriStr = this.args.LastOrDefault();
 
-            if (Uri.IsWellFormedUriString(urlStr, UriKind.RelativeOrAbsolute))
+            if (Uri.TryCreate(this.args.LastOrDefault(), UriKind.RelativeOrAbsolute, out Uri uri))
             {
-                arguementsAndValues.Add(Download.CommandArguements.Url, urlStr);
+                model.Uri = uri;
             }
 
-            return arguementsAndValues;
+            return model;
         }
     }
 }

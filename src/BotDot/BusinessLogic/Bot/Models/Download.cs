@@ -1,8 +1,10 @@
-﻿namespace BotDot.BusinessLogic.Bot.Models
+﻿// <copyright file="Download.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
+
+namespace BotDot.BusinessLogic.Bot.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using BotDot.Helpers;
 
     /// <summary>
@@ -46,34 +48,26 @@
         /// </summary>
         public string End { get; set; }
 
-        public Tuple<bool, string> MapAndValidate(Dictionary<CommandArguements, string> argsKeyValuePairs)
+        /// <summary>
+        /// Map values to model and validate
+        /// </summary>
+        /// <returns>Success * Message</returns>
+        public Tuple<bool, string> Validate()
         {
-            if (!argsKeyValuePairs.Any(x => x.Key == CommandArguements.Url))
+            if (this.Uri == null)
             {
-                return Tuple.Create(false, "Failed No Url specified");
+                return Tuple.Create(false, "Failed Url not specified or invalid");
             }
 
-            if(!Uri.TryCreate(argsKeyValuePairs[CommandArguements.Url], UriKind.RelativeOrAbsolute, out Uri uri))
-            {
-                return Tuple.Create(false, "Failed Invalid Url");
-            }
-
-            var startTime = argsKeyValuePairs[CommandArguements.Start];
-            var endTime = argsKeyValuePairs[CommandArguements.End];
-
-            if (!string.IsNullOrWhiteSpace(startTime) && Time.Validate(startTime))
+           if (!string.IsNullOrWhiteSpace(this.Start) && Time.Validate(this.Start))
             {
                 return Tuple.Create(false, "Failed Start time is invalid. All times should be in HH:MM:SS format");
             }
 
-            if (!string.IsNullOrWhiteSpace(endTime) && Time.Validate(endTime))
+            if (!string.IsNullOrWhiteSpace(this.End) && Time.Validate(this.End))
             {
                 return Tuple.Create(false, "Failed End time is invalid. All times should be in HH:MM:SS format");
             }
-
-            this.Uri = uri;
-            this.Start = startTime;
-            this.End = endTime;
 
             return Tuple.Create(true, string.Empty);
         }
