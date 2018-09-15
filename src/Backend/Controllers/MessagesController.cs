@@ -56,8 +56,8 @@ namespace BotDot.Controllers
                 if (activity.Type == ActivityTypes.Message)
                 {
                     Console.WriteLine($"Message Received: {activity.Text}");
-                    Console.WriteLine("Setting up Connection");
-                    //MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
+                    Console.WriteLine($"Setting up Connection {activity.ServiceUrl}");
+                    MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
                     var appCredentials = new MicrosoftAppCredentials(this.configuration);
                     var connector = new ConnectorClient(new Uri(activity.ServiceUrl), appCredentials);
                     Console.WriteLine("Finished setting up");
