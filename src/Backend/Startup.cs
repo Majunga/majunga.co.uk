@@ -54,7 +54,7 @@ namespace BotDot
 
             var appId = Environment.GetEnvironmentVariable("MicrosoftAppId");
             var appPassword = Environment.GetEnvironmentVariable("MicrosoftAppPassword");
-            Console.WriteLine($"AppId {appId}");
+            Console.WriteLine($"AppId: {appId}");
 
             // Set up Bot
             services.AddSingleton(_ => this.Configuration);
