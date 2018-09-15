@@ -83,7 +83,7 @@ namespace BotDot.BusinessLogic.Bot
                 return;
             }
 
-            await responses.SendMessage($"Done! {Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
+            await responses.SendDownloadHeroCard("Done!", "Please click the link to get video", $"{Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
         }
     }
 }
