@@ -50,6 +50,8 @@ namespace BotDot.BusinessLogic.Services
 
             arguments += $" {newFilename}";
 
+            Console.WriteLine(arguments);
+
             await new ProcessHelper().Run("ffmpeg", arguments);
 
             return new FileInfo(newFilename);
