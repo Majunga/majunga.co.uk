@@ -22,7 +22,7 @@ namespace BotDot.Helpers
             {
                 var fileInfo = new FileInfo(file);
 
-                if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-30))
+                if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-30) && fileInfo.Name.Contains("test.txt"))
                 {
                     try
                     {
