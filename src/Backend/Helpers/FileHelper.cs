@@ -22,9 +22,16 @@ namespace BotDot.Helpers
             {
                 var fileInfo = new FileInfo(file);
 
-                if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-15))
+                if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-30))
                 {
-                    fileInfo.Delete();
+                    try
+                    {
+                        fileInfo.Delete();
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        continue;
+                    }
                 }
             }
         }
