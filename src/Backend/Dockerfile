@@ -14,6 +14,7 @@ RUN mv ./ffmpeg-git-20180913-64bit-static/ffmpeg /usr/local/bin/ffmpeg; \
     chmod a+rx /usr/local/bin/ffmpeg; \
     export PATH=$PATH:/usr/local/bin/ffmpeg; \
     rm -rf /tmp/ffmpeg;
+
 EXPOSE 3978
 
 # Build
