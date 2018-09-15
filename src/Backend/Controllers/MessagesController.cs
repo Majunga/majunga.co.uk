@@ -63,7 +63,7 @@ namespace BotDot.Controllers
                     Console.WriteLine("Finished setting up");
                     var messagetest = activity.CreateReply("Replying");
                     Console.WriteLine("Message created");
-                    connector.Conversations.ReplyToActivityAsync(messagetest);
+                    connector.Conversations.ReplyToActivity(messagetest);
                     Console.WriteLine("Replied");
                     var arguments = new ArguementsHandler(activity.Text);
                     if (arguments.CanAction())
