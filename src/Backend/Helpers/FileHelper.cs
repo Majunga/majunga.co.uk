@@ -18,18 +18,23 @@ namespace BotDot.Helpers
         /// <param name="path">Directory Path</param>
         public static void DeleteExpiredFile(string path)
         {
+            Console.WriteLine("Deleting Expired files");
             foreach (var file in Directory.GetFiles(path))
             {
                 var fileInfo = new FileInfo(file);
-
+                Console.WriteLine($"Trying to delete {fileInfo.Name}");
                 if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-30) && fileInfo.Name.Contains("test.txt"))
                 {
                     try
                     {
                         fileInfo.Delete();
+                        Console.WriteLine($"Deleted {fileInfo.Name}");
+
                     }
                     catch (UnauthorizedAccessException)
                     {
+                        Console.WriteLine($"Failed to delete {fileInfo.Name}");
+
                         continue;
                     }
                 }
