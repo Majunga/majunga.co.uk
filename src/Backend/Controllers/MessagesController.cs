@@ -53,6 +53,7 @@ namespace BotDot.Controllers
 
             if (activity.Type == ActivityTypes.Message)
             {
+                Console.WriteLine($"Message Received: {activity.Text}");
                 Console.WriteLine("Setting up Connection");
                 MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
                 var appCredentials = new MicrosoftAppCredentials(this.configuration);
@@ -62,7 +63,6 @@ namespace BotDot.Controllers
                 Console.WriteLine("Message created");
                 await connector.Conversations.ReplyToActivityAsync(messagetest);
                 Console.WriteLine("Replied");
-                Console.WriteLine($"Message Received: {activity.Text}");
                 var arguments = new ArguementsHandler(activity.Text);
                 if (arguments.CanAction())
                 {
