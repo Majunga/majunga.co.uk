@@ -5,6 +5,7 @@
 namespace BotDot
 {
     using System;
+    using System.IO;
     using BotDot.BackgroundTasks;
     using BotDot.BusinessLogic.Services;
     using BotDot.BusinessLogic.Services.Interfaces;
@@ -51,6 +52,11 @@ namespace BotDot
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var staticFolderLocation = $"{this.Env.WebRootPath}/static";
+
+            if (!Directory.Exists(staticFolderLocation))
+            {
+                Directory.CreateDirectory(staticFolderLocation);
+            }
 
             var appId = Environment.GetEnvironmentVariable("MicrosoftAppId");
             var appPassword = Environment.GetEnvironmentVariable("MicrosoftAppPassword");
@@ -103,6 +109,7 @@ namespace BotDot
 
             app.UseStaticFiles();
             app.UseAuthentication();
+
 
             app.UseMvc();
         }
