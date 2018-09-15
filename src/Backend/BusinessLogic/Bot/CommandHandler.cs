@@ -84,12 +84,6 @@ namespace BotDot.BusinessLogic.Bot
             }
 
             await responses.SendMessage($"Done! {Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
-
-            // Clean up
-            if (file.Exists)
-            {
-                file.Delete();
-            }
         }
     }
 }

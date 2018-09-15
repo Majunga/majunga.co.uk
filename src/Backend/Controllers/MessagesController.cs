@@ -4,14 +4,14 @@
 
 namespace BotDot.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
     using BotDot.BusinessLogic.Bot;
     using BotDot.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Bot.Connector;
     using Microsoft.Extensions.Configuration;
+    using System;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Bot Messages controller
@@ -48,52 +48,61 @@ namespace BotDot.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Activity activity)
         {
-            Console.WriteLine("Entered Message POST Action");
-
-
-            if (activity.Type == ActivityTypes.Message)
+            try
             {
-                Console.WriteLine("Setting up Connection");
-                MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
-                var appCredentials = new MicrosoftAppCredentials(this.configuration);
-                var connector = new ConnectorClient(new Uri(activity.ServiceUrl), appCredentials);
-                Console.WriteLine("Finished setting up");
-                var messagetest = activity.CreateReply("Replying");
-                Console.WriteLine("Message created");
-                await connector.Conversations.ReplyToActivityAsync(messagetest);
-                Console.WriteLine("Replied");
+                Console.WriteLine("Entered Message POST Action");
 
-                var arguments = new ArguementsHandler(activity.Text);
-                if (arguments.CanAction())
+
+                if (activity.Type == ActivityTypes.Message)
                 {
-                    var command = arguments.GetCommand();
-                    var responseHandler = new BotResponseHandler(connector, activity);
-                    switch (command)
+                    Console.WriteLine($"Message Received: {activity.Text}");
+                    Console.WriteLine($"Setting up Connection {activity.ServiceUrl}");
+                    MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
+                    var appCredentials = new MicrosoftAppCredentials(this.configuration);
+                    var connector = new ConnectorClient(new Uri(activity.ServiceUrl), appCredentials);
+                    Console.WriteLine("Finished setting up");
+                    var messagetest = activity.CreateReply("Replying");
+                    Console.WriteLine("Message created");
+                    connector.Conversations.ReplyToActivity(messagetest);
+                    Console.WriteLine("Replied");
+                    var arguments = new ArguementsHandler(activity.Text);
+                    if (arguments.CanAction())
                     {
-                        case CommandHandler.Commands.Download:
-                            await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
-                            break;
-                        default:
-                            var message = "**Bot Help**\n";
-                            message += "Usage: bot download [Optional Commands] [Youtube URL]\n";
-                            message += "Where [Commands] is one of:\n";
-                            message += "*--start HH:MM:SS*\n";
-                            message += "*--end HH:MM:SS*\n";
-                            await responseHandler.SendMessage(message);
-                            break;
+                        var command = arguments.GetCommand();
+                        var responseHandler = new BotResponseHandler(connector, activity);
+                        switch (command)
+                        {
+                            case CommandHandler.Commands.Download:
+                                await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
+                                break;
+                            default:
+                                var message = "**Bot Help**\n";
+                                message += "Usage: bot download [Optional Commands] [Youtube URL]\n";
+                                message += "Where [Commands] is one of:\n";
+                                message += "*--start HH:MM:SS*\n";
+                                message += "*--end HH:MM:SS*\n";
+                                await responseHandler.SendMessage(message);
+                                break;
+                        }
                     }
+
+                    // return our reply to the user
+                    // var reply = activity.CreateReply("HelloWorld");
+                    // await connector.Conversations.ReplyToActivityAsync(reply);
+                }
+                else
+                {
+                    // HandleSystemMessage(activity);
                 }
 
-                // return our reply to the user
-                // var reply = activity.CreateReply("HelloWorld");
-                // await connector.Conversations.ReplyToActivityAsync(reply);
+                return this.Ok();
             }
-            else
+            catch (Exception ex)
             {
-                // HandleSystemMessage(activity);
+                Console.WriteLine($"{ex.Message} ");
+                throw;
             }
-
-            return this.Ok();
         }
+
     }
 }
