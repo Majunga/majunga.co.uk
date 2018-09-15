@@ -40,7 +40,7 @@ namespace BotDot.BusinessLogic.Services
 
             Console.WriteLine(Environment.CurrentDirectory);
 
-            var arguments = $"--restrict-filenames -o \"{path.Replace("/app", string.Empty)}/%(id)s.%(ext)s\" {uri.ToString()}";
+            var arguments = $"--restrict-filenames -o \"{path}/%(id)s.%(ext)s\" {uri.ToString()}";
 
             Console.WriteLine(arguments);
 
