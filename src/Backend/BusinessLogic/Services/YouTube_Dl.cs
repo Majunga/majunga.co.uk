@@ -38,6 +38,8 @@ namespace BotDot.BusinessLogic.Services
 
             var id = this.GetVideoIdFromQueryString(uri);
 
+            Console.WriteLine(Environment.CurrentDirectory);
+
             var arguments = $"--restrict-filenames -o \"{path.Replace("/app", string.Empty)}/%(id)s.%(ext)s\" {uri.ToString()}";
 
             Console.WriteLine(arguments);
