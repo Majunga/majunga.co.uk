@@ -52,11 +52,15 @@ namespace BotDot
 
             var staticFolderLocation = $"{this.Env.WebRootPath}/static";
 
+            var appId = Environment.GetEnvironmentVariable("MicrosoftAppId");
+            var appPassword = Environment.GetEnvironmentVariable("MicrosoftAppPassword");
+            Console.WriteLine(appId);
+            Console.WriteLine(appPassword);
             // Set up Bot
             services.AddSingleton(_ => this.Configuration);
             var credentialProvider = new StaticCredentialProvider(
-                Environment.GetEnvironmentVariable("MicrosoftAppId"),
-                Environment.GetEnvironmentVariable("MicrosoftAppPassword"));
+                appId,
+                appPassword);
 
             services.AddAuthentication(
                     options =>

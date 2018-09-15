@@ -6,5 +6,7 @@ services:
       - "3000:3000"
   backend:
     build: ./src/Backend
+    environment: 
+      - ASPNETCORE_URLS=http://*:3978
     ports:
       - "3978:3978"

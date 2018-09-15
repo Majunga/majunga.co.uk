@@ -36,7 +36,7 @@ namespace BotDot.BusinessLogic.Services
         {
             var path = FileHelper.GetFullPath(this.outputPath);
             var newFilename = $"{path}/{file.Name.Replace(file.Extension, string.Empty)}Cut.mp4";
-            var arguments = $"-y -i {file.FullName} -f mp4 -strict -2 -c copy";
+            var arguments = $"-y -i {file.FullName} ";
 
             if (!string.IsNullOrWhiteSpace(times?.Item1))
             {
@@ -48,7 +48,7 @@ namespace BotDot.BusinessLogic.Services
                 arguments += $" -to {times.Item2}";
             }
 
-            arguments += $" -frame_size 160 {newFilename}";
+            arguments += $" {newFilename}";
 
             await new ProcessHelper().Run("ffmpeg", arguments);
 
