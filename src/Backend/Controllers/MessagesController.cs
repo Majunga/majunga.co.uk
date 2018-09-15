@@ -70,7 +70,7 @@ namespace BotDot.Controllers
                                 message += $"Where [Commands] is one of: {Environment.NewLine}";
                                 message += $"--start HH:MM:SS {Environment.NewLine}";
                                 message += $"--end HH:MM:SS {Environment.NewLine}";
-                                await responseHandler.SendHeroCard("**Bot Help**", message);
+                                await responseHandler.SendHeroCard("Bot Help", message);
                                 break;
                         }
                     }
