@@ -110,7 +110,6 @@ namespace BotDot
             app.UseStaticFiles();
             app.UseAuthentication();
 
-
             app.UseMvc();
         }
     }
