@@ -62,7 +62,7 @@ namespace BotDot.Controllers
                 Console.WriteLine("Message created");
                 await connector.Conversations.ReplyToActivityAsync(messagetest);
                 Console.WriteLine("Replied");
-
+                Console.WriteLine($"Message Received: {activity.Text}");
                 var arguments = new ArguementsHandler(activity.Text);
                 if (arguments.CanAction())
                 {
