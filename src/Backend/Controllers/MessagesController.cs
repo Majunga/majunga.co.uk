@@ -32,8 +32,6 @@ namespace BotDot.Controllers
         /// <param name="videoConverter">Video conversion</param>
         public MessagesController(IConfiguration configuration, IYoutubeDownload download, IVideoConverter videoConverter)
         {
-            Console.WriteLine("Entered MessageController");
-
             this.configuration = configuration;
             this.download = download;
             this.videoConverter = videoConverter;
@@ -50,21 +48,13 @@ namespace BotDot.Controllers
         {
             try
             {
-                Console.WriteLine("Entered Message POST Action");
-
-
                 if (activity.Type == ActivityTypes.Message)
                 {
-                    Console.WriteLine($"Message Received: {activity.Text}");
-                    Console.WriteLine($"Setting up Connection {activity.ServiceUrl}");
                     MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
+
                     var appCredentials = new MicrosoftAppCredentials(this.configuration);
                     var connector = new ConnectorClient(new Uri(activity.ServiceUrl), appCredentials);
-                    Console.WriteLine("Finished setting up");
-                    var messagetest = activity.CreateReply("Replying");
-                    Console.WriteLine("Message created");
-                    connector.Conversations.ReplyToActivity(messagetest);
-                    Console.WriteLine("Replied");
+
                     var arguments = new ArguementsHandler(activity.Text);
                     if (arguments.CanAction())
                     {
