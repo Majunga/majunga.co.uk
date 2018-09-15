@@ -66,12 +66,11 @@ namespace BotDot.Controllers
                                 await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
                                 break;
                             default:
-                                var message = "**Bot Help**\n";
-                                message += "Usage: bot download [Optional Commands] [Youtube URL]\n";
-                                message += "Where [Commands] is one of:\n";
-                                message += "*--start HH:MM:SS*\n";
-                                message += "*--end HH:MM:SS*\n";
-                                await responseHandler.SendMessage(message);
+                                var message = $"Usage: bot download [Optional Commands] [Youtube URL] {Environment.NewLine}";
+                                message += $"Where [Commands] is one of: {Environment.NewLine}";
+                                message += $"--start HH:MM:SS {Environment.NewLine}";
+                                message += $"--end HH:MM:SS {Environment.NewLine}";
+                                await responseHandler.SendHeroCard("**Bot Help**", message);
                                 break;
                         }
                     }

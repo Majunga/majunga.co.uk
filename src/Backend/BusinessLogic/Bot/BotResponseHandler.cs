@@ -54,9 +54,29 @@ namespace BotDot.BusinessLogic.Bot
             var heroCard = new HeroCard
             {
                 Title = title,
+                Text = message,
                 Tap = cardAction
             };
-            var reply = this.activity.CreateReply(message);
+            var reply = this.activity.CreateReply(string.Empty);
+            Attachment heroCardAttachment = heroCard.ToAttachment();
+            reply.Attachments.Add(heroCardAttachment);
+            await this.connector.Conversations.ReplyToActivityAsync(reply);
+        }
+
+        /// <summary>
+        /// Response with Hero card
+        /// </summary>
+        /// <param name="title">Title of Hero Card</param>
+        /// <param name="message">Mesage to give</param>
+        /// <returns>Task</returns>
+        public async Task SendHeroCard(string title, string message)
+        {
+            var heroCard = new HeroCard
+            {
+                Title = title,
+                Text = message
+            };
+            var reply = this.activity.CreateReply(string.Empty);
             Attachment heroCardAttachment = heroCard.ToAttachment();
             reply.Attachments.Add(heroCardAttachment);
             await this.connector.Conversations.ReplyToActivityAsync(reply);

@@ -78,6 +78,23 @@
             <param name="message">Message to send</param>
             <returns>Task</returns>
         </member>
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendDownloadHeroCard(System.String,System.String,System.String)">
+            <summary>
+            Response with Hero card of the download file
+            </summary>
+            <param name="title">Title of Hero Card</param>
+            <param name="message">Mesage to give</param>
+            <param name="downloadUri">Download Url</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendHeroCard(System.String,System.String)">
+            <summary>
+            Response with Hero card
+            </summary>
+            <param name="title">Title of Hero Card</param>
+            <param name="message">Mesage to give</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:BotDot.BusinessLogic.Bot.CommandHandler">
             <summary>
             Command Handler
