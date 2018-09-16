@@ -374,5 +374,41 @@
             <param name="app">Application Builder</param>
             <param name="env">Hosting Environment</param>
         </member>
+        <member name="T:Backend.BusinessLogic.Services.Interfaces.IMessageQueuing">
+            <summary>
+            Message Queue Interface
+            </summary>
+        </member>
+        <member name="M:Backend.BusinessLogic.Services.Interfaces.IMessageQueuing.QueueMessageAsync(Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection,System.String)">
+            <summary>
+            Queue Message
+            </summary>
+            <param name="connection">Queue Details</param>
+            <param name="messageJson">Message to send</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection">
+            <summary>
+            Message Queue connection model
+            </summary>
+        </member>
+        <member name="P:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection.Host">
+            <summary>
+            Gets or sets host
+            </summary>
+        </member>
+        <member name="P:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection.Channel">
+            <summary>
+            Gets or sets channel
+            </summary>
+        </member>
+        <member name="T:Backend.BusinessLogic.Services.RabbitMQ">
+            <summary>
+            RabbitMQ Service
+            </summary>
+        </member>
+        <member name="M:Backend.BusinessLogic.Services.RabbitMQ.QueueMessageAsync(Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection,System.String)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>
