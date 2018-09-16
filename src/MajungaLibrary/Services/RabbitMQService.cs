@@ -2,11 +2,11 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace Backend.BusinessLogic.Services
+namespace MajungaLibrary.BusinessLogic.Services
 {
     using System.Text;
-    using Backend.BusinessLogic.Services.Interfaces;
-    using Backend.BusinessLogic.Services.Models.MessageQueue;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
+    using MajungaLibrary.BusinessLogic.Services.Models.MessageQueue;
     using Newtonsoft.Json;
     using RabbitMQ.Client;
 

@@ -2,18 +2,14 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace Backend.BusinessLogic.Services.Interfaces
+namespace MajungaLibrary.BusinessLogic.Services.Interfaces
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Backend.BusinessLogic.Services.Models.MessageQueue;
 
     /// <summary>
     /// Message Queue Interface
     /// </summary>
-    public interface IMessageQueuing : IDi
+    public interface IMessageQueuing : IDisposable
     {
         /// <summary>
         /// Queue Message

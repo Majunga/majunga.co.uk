@@ -1,11 +1,11 @@
-﻿using BotDot.BusinessLogic.Bot;
-using BotDot.BusinessLogic.Bot.Models;
+﻿using Backend.BusinessLogic.Bot;
+using Backend.BusinessLogic.Bot.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace BotDot.Tests.BusinessLogic.Bot
+namespace BackendTests.BusinessLogic.Bot
 {
     /// <summary>
     /// Tests for the Arguments Class

@@ -2,7 +2,7 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.Helpers
+namespace MajungaLibrary.Helpers
 {
     using System;
     using System.IO;

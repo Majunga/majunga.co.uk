@@ -1,5 +1,5 @@
 ﻿[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
-namespace BackendTests.BusinessLogic.Services
+namespace MajungaLibraryTests.BusinessLogic.Services
 {
     using MajungaLibrary.BusinessLogic.Services;
     using System;

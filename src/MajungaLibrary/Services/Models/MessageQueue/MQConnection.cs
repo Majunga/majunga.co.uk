@@ -2,7 +2,7 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace Backend.BusinessLogic.Services.Models.MessageQueue
+namespace MajungaLibrary.BusinessLogic.Services.Models.MessageQueue
 {
     /// <summary>
     /// Message Queue connection model

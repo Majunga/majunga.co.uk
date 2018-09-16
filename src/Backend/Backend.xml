@@ -4,89 +4,89 @@
         <name>Backend</name>
     </assembly>
     <members>
-        <member name="T:BotDot.BackgroundTasks.DeleteExpiredDownloads">
+        <member name="T:Backend.BackgroundTasks.DeleteExpiredDownloads">
             <summary>
             Deletes Expired Downloads, so server storages isn't filleds
             </summary>
         </member>
-        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="M:Backend.BackgroundTasks.DeleteExpiredDownloads.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BackgroundTasks.DeleteExpiredDownloads"/> class.
+            Initializes a new instance of the <see cref="T:Backend.BackgroundTasks.DeleteExpiredDownloads"/> class.
             </summary>
             <param name="env">Environment Param</param>
         </member>
-        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.StartAsync(System.Threading.CancellationToken)">
+        <member name="M:Backend.BackgroundTasks.DeleteExpiredDownloads.StartAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.StopAsync(System.Threading.CancellationToken)">
+        <member name="M:Backend.BackgroundTasks.DeleteExpiredDownloads.StopAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.DoWork(System.Object)">
+        <member name="M:Backend.BackgroundTasks.DeleteExpiredDownloads.DoWork(System.Object)">
             <summary>
             Clear up files
             </summary>
             <param name="state">Static of Service</param>
         </member>
-        <member name="M:BotDot.BackgroundTasks.DeleteExpiredDownloads.Dispose">
+        <member name="M:Backend.BackgroundTasks.DeleteExpiredDownloads.Dispose">
             <inheritdoc/>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.ArguementsHandler">
+        <member name="T:Backend.BusinessLogic.Bot.ArguementsHandler">
             <summary>
             Get Arguments from string message
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.#ctor(System.String)">
+        <member name="M:Backend.BusinessLogic.Bot.ArguementsHandler.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.ArguementsHandler"/> class.
+            Initializes a new instance of the <see cref="T:Backend.BusinessLogic.Bot.ArguementsHandler"/> class.
             </summary>
             <param name="argsStr">Argument String</param>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.CanAction">
+        <member name="M:Backend.BusinessLogic.Bot.ArguementsHandler.CanAction">
             <summary>
             Message is actionable by bot
             </summary>
             <returns>Bool</returns>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.GetCommand">
+        <member name="M:Backend.BusinessLogic.Bot.ArguementsHandler.GetCommand">
             <summary>
             Get Command from Arguements
             </summary>
             <returns>Command (Defaults to help if not found)</returns>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.ArguementsHandler.GetDownloadCommandArguements">
+        <member name="M:Backend.BusinessLogic.Bot.ArguementsHandler.GetDownloadCommandArguements">
             <summary>
             Get Dictionary of Download Arguments and there values
             </summary>
             <returns>Dictionary Download Arguments * Argument Value</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler">
+        <member name="T:Backend.BusinessLogic.Bot.CommandHandler">
             <summary>
             Command Handler
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.#ctor(BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+        <member name="M:Backend.BusinessLogic.Bot.CommandHandler.#ctor(MajungaLibrary.BusinessLogic.Services.Interfaces.IYoutubeDownload,MajungaLibrary.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.CommandHandler"/> class.
+            Initializes a new instance of the <see cref="T:Backend.BusinessLogic.Bot.CommandHandler"/> class.
             </summary>
             <param name="download">Downloads files from Internet</param>
             <param name="videoConverter">Video conversion</param>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.CommandHandler.Commands">
+        <member name="T:Backend.BusinessLogic.Bot.CommandHandler.Commands">
             <summary>
             Commands available
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.Commands.Download">
+        <member name="F:Backend.BusinessLogic.Bot.CommandHandler.Commands.Download">
             <summary>
             Download Youtube video
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.CommandHandler.Commands.Help">
+        <member name="F:Backend.BusinessLogic.Bot.CommandHandler.Commands.Help">
             <summary>
             Help section
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommand(BotDot.BusinessLogic.Bot.ArguementsHandler,BotDot.BusinessLogic.Bot.UserIntractionHandler)">
+        <member name="M:Backend.BusinessLogic.Bot.CommandHandler.DownloadCommand(Backend.BusinessLogic.Bot.ArguementsHandler,Backend.BusinessLogic.Bot.UserIntractionHandler)">
             <summary>
             Run actions for Download command
             </summary>
@@ -94,82 +94,82 @@
             <param name="userInteraction">BotResponseHandler</param>
             <returns>Task</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.Models.Download">
+        <member name="T:Backend.BusinessLogic.Bot.Models.Download">
             <summary>
             Download Model and methods
             </summary>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements">
+        <member name="T:Backend.BusinessLogic.Bot.Models.Download.CommandArguements">
             <summary>
             Download Command Arguements
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.Url">
+        <member name="F:Backend.BusinessLogic.Bot.Models.Download.CommandArguements.Url">
             <summary>
             Url of file to download, last arguement
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.Start">
+        <member name="F:Backend.BusinessLogic.Bot.Models.Download.CommandArguements.Start">
             <summary>
             Time to start video from
             </summary>
         </member>
-        <member name="F:BotDot.BusinessLogic.Bot.Models.Download.CommandArguements.End">
+        <member name="F:Backend.BusinessLogic.Bot.Models.Download.CommandArguements.End">
             <summary>
             Time to end video from
             </summary>
         </member>
-        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.Uri">
+        <member name="P:Backend.BusinessLogic.Bot.Models.Download.Uri">
             <summary>
             Gets or sets url to use
             </summary>
         </member>
-        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.Start">
+        <member name="P:Backend.BusinessLogic.Bot.Models.Download.Start">
             <summary>
             Gets or sets start Time
             </summary>
         </member>
-        <member name="P:BotDot.BusinessLogic.Bot.Models.Download.End">
+        <member name="P:Backend.BusinessLogic.Bot.Models.Download.End">
             <summary>
             Gets or sets end Time
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.Models.Download.Validate">
+        <member name="M:Backend.BusinessLogic.Bot.Models.Download.Validate">
             <summary>
             Map values to model and validate
             </summary>
             <returns>Success * Message</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.UserIntractionHandler">
+        <member name="T:Backend.BusinessLogic.Bot.UserIntractionHandler">
             <summary>
             Response to user
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
+        <member name="M:Backend.BusinessLogic.Bot.UserIntractionHandler.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.UserIntractionHandler"/> class.
+            Initializes a new instance of the <see cref="T:Backend.BusinessLogic.Bot.UserIntractionHandler"/> class.
             </summary>
             <param name="connector">Connector to User</param>
             <param name="activity">User Activity</param>
         </member>
-        <member name="P:BotDot.BusinessLogic.Bot.UserIntractionHandler.UserId">
+        <member name="P:Backend.BusinessLogic.Bot.UserIntractionHandler.UserId">
             <summary>
             Gets userId of recipient
             </summary>
         </member>
-        <member name="P:BotDot.BusinessLogic.Bot.UserIntractionHandler.NameOfUser">
+        <member name="P:Backend.BusinessLogic.Bot.UserIntractionHandler.NameOfUser">
             <summary>
             Gets Name of recipient
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendMessage(System.String)">
+        <member name="M:Backend.BusinessLogic.Bot.UserIntractionHandler.SendMessage(System.String)">
             <summary>
             Send Message to User
             </summary>
             <param name="message">Message to send</param>
             <returns>Task</returns>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendDownloadHeroCard(System.String,System.String,System.String)">
+        <member name="M:Backend.BusinessLogic.Bot.UserIntractionHandler.SendDownloadHeroCard(System.String,System.String,System.String)">
             <summary>
             Response with Hero card of the download file
             </summary>
@@ -178,7 +178,7 @@
             <param name="downloadUri">Download Url</param>
             <returns>Task</returns>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendHeroCard(System.String,System.String)">
+        <member name="M:Backend.BusinessLogic.Bot.UserIntractionHandler.SendHeroCard(System.String,System.String)">
             <summary>
             Response with Hero card
             </summary>
@@ -186,140 +186,25 @@
             <param name="message">Mesage to give</param>
             <returns>Task</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Services.FFMpeg">
-            <summary>
-            FFMpeg Video Converter
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.FFMpeg.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Services.FFMpeg"/> class.
-            </summary>
-            <param name="outputPath">Output path of converted file</param>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.FFMpeg.ConvertToMp4(System.IO.FileInfo,System.Tuple{System.String,System.String})">
-            <summary>
-            Convert file to Mp4
-            </summary>
-            <param name="file">File to convert</param>
-            <param name="times">Times tp cut file to</param>
-            <returns>async task of Converted Files Info </returns>
-        </member>
-        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter">
-            <summary>
-            Converts video formats
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IVideoConverter.ConvertToMp4(System.IO.FileInfo,System.Tuple{System.String,System.String})">
-            <summary>
-            Convert any video type to MP4
-            </summary>
-            <param name="file">File to convert</param>
-            <param name="times">Cut file to size</param>
-            <returns>Converted video File</returns>
-        </member>
-        <member name="T:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload">
-            <summary>
-            Downloads files from the internet
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload.DownloadVideo(System.Uri,System.String)">
-            <summary>
-            Download YouTube video
-            </summary>
-            <param name="uri">Uri to the video</param>
-            <param name="userId">UserId of requester</param>
-            <returns>Task of Downloaded Video file</returns>
-        </member>
-        <member name="T:BotDot.BusinessLogic.Services.Youtube_Dl">
-            <summary>
-            Youtube-Dl is used for downloading Youtube videos
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Services.Youtube_Dl"/> class.
-            </summary>
-            <param name="outputPath">Output path of downloaded Video</param>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.DownloadVideo(System.Uri,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.GetVideoIdFromQueryString(System.Uri)">
-            <summary>
-            Get the Video Id from the Uri's Query string
-            </summary>
-            <param name="uri">Uri of website</param>
-            <returns>Id of video</returns>
-        </member>
-        <member name="T:BotDot.Controllers.MessagesController">
+        <member name="T:Backend.Controllers.MessagesController">
             <summary>
             Bot Messages controller
             </summary>
         </member>
-        <member name="M:BotDot.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload,BotDot.BusinessLogic.Services.Interfaces.IVideoConverter)">
+        <member name="M:Backend.Controllers.MessagesController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,MajungaLibrary.BusinessLogic.Services.Interfaces.IYoutubeDownload,MajungaLibrary.BusinessLogic.Services.Interfaces.IVideoConverter)">
             <summary>
-            Initializes a new instance of the <see cref="T:BotDot.Controllers.MessagesController"/> class.
+            Initializes a new instance of the <see cref="T:Backend.Controllers.MessagesController"/> class.
             </summary>
             <param name="configuration">Configuration of Application</param>
             <param name="download">Downloads files from Internet</param>
             <param name="videoConverter">Video conversion</param>
         </member>
-        <member name="M:BotDot.Controllers.MessagesController.Post(Microsoft.Bot.Connector.Activity)">
+        <member name="M:Backend.Controllers.MessagesController.Post(Microsoft.Bot.Connector.Activity)">
             <summary>
             POST Message method
             </summary>
             <param name="activity">Activatity object</param>
             <returns>Action Result</returns>
-        </member>
-        <member name="T:BotDot.Helpers.FileHelper">
-            <summary>
-            Helpers for file related taskss
-            </summary>
-        </member>
-        <member name="M:BotDot.Helpers.FileHelper.DeleteExpiredFile(System.String)">
-            <summary>
-            Delete files in Directory that are older than 15 mins
-            </summary>
-            <param name="path">Directory Path</param>
-        </member>
-        <member name="M:BotDot.Helpers.FileHelper.GetFullPath(System.String)">
-            <summary>
-            Gets the full path of a Directory or defaults to current Directories full path
-            </summary>
-            <param name="path">Partial path</param>
-            <returns>Full Path</returns>
-        </member>
-        <member name="M:BotDot.Helpers.FileHelper.CleanUpFile(System.String)">
-            <summary>
-            Delete files in directory
-            </summary>
-            <param name="filePattern">Pattern to match with</param>
-        </member>
-        <member name="T:BotDot.Helpers.ProcessHelper">
-            <summary>
-            Helper to Run Processes
-            </summary>
-        </member>
-        <member name="M:BotDot.Helpers.ProcessHelper.Run(System.String,System.String)">
-            <summary>
-            Run Process
-            </summary>
-            <param name="filename">Name of file to run</param>
-            <param name="arguements">Arguments</param>
-            <returns>Task</returns>
-        </member>
-        <member name="T:BotDot.Helpers.Time">
-            <summary>
-            time Helpers
-            </summary>
-        </member>
-        <member name="M:BotDot.Helpers.Time.Validate(System.String)">
-            <summary>
-            Validate Time
-            </summary>
-            <param name="timeStr">String of Time, Expects HH:MM:SS</param>
-            <returns>Bool</returns>
         </member>
         <member name="T:BotDot.Program">
             <summary>
@@ -373,42 +258,6 @@
             </summary>
             <param name="app">Application Builder</param>
             <param name="env">Hosting Environment</param>
-        </member>
-        <member name="T:Backend.BusinessLogic.Services.Interfaces.IMessageQueuing">
-            <summary>
-            Message Queue Interface
-            </summary>
-        </member>
-        <member name="M:Backend.BusinessLogic.Services.Interfaces.IMessageQueuing.QueueMessageAsync(Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection,System.String)">
-            <summary>
-            Queue Message
-            </summary>
-            <param name="connection">Queue Details</param>
-            <param name="messageJson">Message to send</param>
-            <returns>Task</returns>
-        </member>
-        <member name="T:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection">
-            <summary>
-            Message Queue connection model
-            </summary>
-        </member>
-        <member name="P:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection.Host">
-            <summary>
-            Gets or sets host
-            </summary>
-        </member>
-        <member name="P:Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection.Channel">
-            <summary>
-            Gets or sets channel
-            </summary>
-        </member>
-        <member name="T:Backend.BusinessLogic.Services.RabbitMQ">
-            <summary>
-            RabbitMQ Service
-            </summary>
-        </member>
-        <member name="M:Backend.BusinessLogic.Services.RabbitMQ.QueueMessageAsync(Backend.BusinessLogic.Services.Models.MessageQueue.MQConnection,System.String)">
-            <inheritdoc/>
         </member>
     </members>
 </doc>

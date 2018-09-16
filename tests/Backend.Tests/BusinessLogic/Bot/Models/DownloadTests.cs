@@ -1,6 +1,6 @@
-﻿namespace BotDot.Tests.BusinessLogic.Bot.Models
+﻿namespace BackendTests.BusinessLogic.Bot.Models
 {
-    using BotDot.BusinessLogic.Bot.Models;
+    using Backend.BusinessLogic.Bot.Models;
     using Xunit;
 
     public class DownloadTests
