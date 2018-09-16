@@ -23,7 +23,7 @@ namespace BotDot.Helpers
             {
                 var fileInfo = new FileInfo(file);
                 Console.WriteLine($"Trying to delete {fileInfo.Name}");
-                if (fileInfo.CreationTime < DateTime.Now.AddMinutes(-30) && fileInfo.Name.Contains("test.txt"))
+                if (fileInfo.CreationTime.AddHours(1) < DateTime.Now && !fileInfo.Name.Contains("test.txt"))
                 {
                     try
                     {
