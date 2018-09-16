@@ -10,20 +10,36 @@ namespace BotDot.BusinessLogic.Bot
     /// <summary>
     /// Response to user
     /// </summary>
-    public class BotResponseHandler
+    public class UserIntractionHandler
     {
         private ConnectorClient connector;
         private Activity activity;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BotResponseHandler"/> class.
+        /// Initializes a new instance of the <see cref="UserIntractionHandler"/> class.
         /// </summary>
         /// <param name="connector">Connector to User</param>
         /// <param name="activity">User Activity</param>
-        public BotResponseHandler(ConnectorClient connector, Activity activity)
+        public UserIntractionHandler(ConnectorClient connector, Activity activity)
         {
             this.connector = connector;
             this.activity = activity;
+        }
+
+        /// <summary>
+        /// Gets userId of recipient
+        /// </summary>
+        public string UserId
+        {
+            get { return this.activity.Recipient.Id; }
+        }
+
+        /// <summary>
+        /// Gets Name of recipient
+        /// </summary>
+        public string NameOfUser
+        {
+            get { return this.activity.Recipient.Name; }
         }
 
         /// <summary>

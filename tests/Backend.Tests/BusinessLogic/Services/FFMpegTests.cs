@@ -9,7 +9,7 @@
         [Fact]
         public void ConvertToMp4_GoodUrl_ReturnsFileInfoOfDownloadedVideo()
         {
-            var downloadedVideo = new Youtube_Dl("").DownloadVideo(new Uri($"https://www.youtube.com/watch?v=uq5MtA33OHk")).Result;
+            var downloadedVideo = new Youtube_Dl("").DownloadVideo(new Uri($"https://www.youtube.com/watch?v=uq5MtA33OHk"), "test").Result;
 
             var times = Tuple.Create<string, string>(null, null);
 
@@ -32,7 +32,7 @@
         [Fact]
         public void ConvertToMp4_GoodUrlWithStartTime_ReturnsFileInfoOfDownloadedVideo()
         {
-            var downloadedVideo = new Youtube_Dl("").DownloadVideo(new Uri($"https://www.youtube.com/watch?v=uq5MtA33OHk")).Result;
+            var downloadedVideo = new Youtube_Dl("").DownloadVideo(new Uri($"https://www.youtube.com/watch?v=uq5MtA33OHk"), "test").Result;
 
             var times = Tuple.Create<string, string>("00:00:05", null);
 
