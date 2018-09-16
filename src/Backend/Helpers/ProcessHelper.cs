@@ -25,7 +25,7 @@ namespace BotDot.Helpers
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    UseShellExecute = true,
+                    UseShellExecute = false,
                     FileName = filename,
                     Arguments = arguements
                 }

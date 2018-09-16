@@ -1,5 +1,10 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
+
+# Installing Python, dependency for youtube-dl
+RUN apt-get update -y; \
+	apt-get install python -y
+
 # Install youtube-dl
 ADD https://yt-dl.org/downloads/latest/youtube-dl /usr/local/bin/youtube-dl
 RUN chmod a+rx /usr/local/bin/youtube-dl; \

@@ -32,8 +32,6 @@ namespace BotDot.Controllers
         /// <param name="videoConverter">Video conversion</param>
         public MessagesController(IConfiguration configuration, IYoutubeDownload download, IVideoConverter videoConverter)
         {
-            Console.WriteLine("Entered MessageController");
-
             this.configuration = configuration;
             this.download = download;
             this.videoConverter = videoConverter;
@@ -50,21 +48,13 @@ namespace BotDot.Controllers
         {
             try
             {
-                Console.WriteLine("Entered Message POST Action");
-
-
                 if (activity.Type == ActivityTypes.Message)
                 {
-                    Console.WriteLine($"Message Received: {activity.Text}");
-                    Console.WriteLine($"Setting up Connection {activity.ServiceUrl}");
                     MicrosoftAppCredentials.TrustServiceUrl(activity.ServiceUrl);
+
                     var appCredentials = new MicrosoftAppCredentials(this.configuration);
                     var connector = new ConnectorClient(new Uri(activity.ServiceUrl), appCredentials);
-                    Console.WriteLine("Finished setting up");
-                    var messagetest = activity.CreateReply("Replying");
-                    Console.WriteLine("Message created");
-                    connector.Conversations.ReplyToActivity(messagetest);
-                    Console.WriteLine("Replied");
+
                     var arguments = new ArguementsHandler(activity.Text);
                     if (arguments.CanAction())
                     {
@@ -76,12 +66,11 @@ namespace BotDot.Controllers
                                 await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
                                 break;
                             default:
-                                var message = "**Bot Help**\n";
-                                message += "Usage: bot download [Optional Commands] [Youtube URL]\n";
-                                message += "Where [Commands] is one of:\n";
-                                message += "*--start HH:MM:SS*\n";
-                                message += "*--end HH:MM:SS*\n";
-                                await responseHandler.SendMessage(message);
+                                var message = $"Usage: bot download [Optional Commands] [Youtube URL] {Environment.NewLine}";
+                                message += $"Where [Commands] is one of: {Environment.NewLine}";
+                                message += $"--start HH:MM:SS {Environment.NewLine}";
+                                message += $"--end HH:MM:SS {Environment.NewLine}";
+                                await responseHandler.SendHeroCard("Bot Help", message);
                                 break;
                         }
                     }

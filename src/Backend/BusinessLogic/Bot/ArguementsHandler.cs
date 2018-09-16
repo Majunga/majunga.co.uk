@@ -87,9 +87,9 @@ namespace BotDot.BusinessLogic.Bot
                 }
             }
 
-            var uriStr = this.args.LastOrDefault();
+            var uriStr = this.args.LastOrDefault()?.Replace("<", string.Empty).Replace(">", string.Empty) ?? string.Empty;
 
-            if (Uri.TryCreate(this.args.LastOrDefault(), UriKind.RelativeOrAbsolute, out Uri uri))
+            if (Uri.TryCreate(uriStr, UriKind.Absolute, out Uri uri))
             {
                 model.Uri = uri;
             }

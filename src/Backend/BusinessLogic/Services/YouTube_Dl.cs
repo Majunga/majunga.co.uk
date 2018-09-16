@@ -38,7 +38,13 @@ namespace BotDot.BusinessLogic.Services
 
             var id = this.GetVideoIdFromQueryString(uri);
 
-            await new ProcessHelper().Run("youtube-dl", $"--restrict-filenames -o {path}\\%(id)s.%(ext)s {uri.ToString()}");
+            Console.WriteLine(Environment.CurrentDirectory);
+
+            var arguments = $"--restrict-filenames -o \"{path}/%(id)s.%(ext)s\" {uri.ToString()}";
+
+            Console.WriteLine(arguments);
+
+            await new ProcessHelper().Run("youtube-dl", arguments);
 
             var filename = Directory.GetFiles(path, $"{id}*.*")?.FirstOrDefault() ?? string.Empty;
 
