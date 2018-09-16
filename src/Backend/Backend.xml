@@ -59,42 +59,6 @@
             </summary>
             <returns>Dictionary Download Arguments * Argument Value</returns>
         </member>
-        <member name="T:BotDot.BusinessLogic.Bot.BotResponseHandler">
-            <summary>
-            Response to user
-            </summary>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.BotResponseHandler"/> class.
-            </summary>
-            <param name="connector">Connector to User</param>
-            <param name="activity">User Activity</param>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendMessage(System.String)">
-            <summary>
-            Send Message to User
-            </summary>
-            <param name="message">Message to send</param>
-            <returns>Task</returns>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendDownloadHeroCard(System.String,System.String,System.String)">
-            <summary>
-            Response with Hero card of the download file
-            </summary>
-            <param name="title">Title of Hero Card</param>
-            <param name="message">Mesage to give</param>
-            <param name="downloadUri">Download Url</param>
-            <returns>Task</returns>
-        </member>
-        <member name="M:BotDot.BusinessLogic.Bot.BotResponseHandler.SendHeroCard(System.String,System.String)">
-            <summary>
-            Response with Hero card
-            </summary>
-            <param name="title">Title of Hero Card</param>
-            <param name="message">Mesage to give</param>
-            <returns>Task</returns>
-        </member>
         <member name="T:BotDot.BusinessLogic.Bot.CommandHandler">
             <summary>
             Command Handler
@@ -122,12 +86,12 @@
             Help section
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommand(BotDot.BusinessLogic.Bot.ArguementsHandler,BotDot.BusinessLogic.Bot.BotResponseHandler)">
+        <member name="M:BotDot.BusinessLogic.Bot.CommandHandler.DownloadCommand(BotDot.BusinessLogic.Bot.ArguementsHandler,BotDot.BusinessLogic.Bot.UserIntractionHandler)">
             <summary>
             Run actions for Download command
             </summary>
             <param name="args">ArgumentsHandler</param>
-            <param name="responses">BotResponseHandler</param>
+            <param name="userInteraction">BotResponseHandler</param>
             <returns>Task</returns>
         </member>
         <member name="T:BotDot.BusinessLogic.Bot.Models.Download">
@@ -176,6 +140,52 @@
             </summary>
             <returns>Success * Message</returns>
         </member>
+        <member name="T:BotDot.BusinessLogic.Bot.UserIntractionHandler">
+            <summary>
+            Response to user
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.#ctor(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Connector.Activity)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BotDot.BusinessLogic.Bot.UserIntractionHandler"/> class.
+            </summary>
+            <param name="connector">Connector to User</param>
+            <param name="activity">User Activity</param>
+        </member>
+        <member name="P:BotDot.BusinessLogic.Bot.UserIntractionHandler.UserId">
+            <summary>
+            Gets userId of recipient
+            </summary>
+        </member>
+        <member name="P:BotDot.BusinessLogic.Bot.UserIntractionHandler.NameOfUser">
+            <summary>
+            Gets Name of recipient
+            </summary>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendMessage(System.String)">
+            <summary>
+            Send Message to User
+            </summary>
+            <param name="message">Message to send</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendDownloadHeroCard(System.String,System.String,System.String)">
+            <summary>
+            Response with Hero card of the download file
+            </summary>
+            <param name="title">Title of Hero Card</param>
+            <param name="message">Mesage to give</param>
+            <param name="downloadUri">Download Url</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:BotDot.BusinessLogic.Bot.UserIntractionHandler.SendHeroCard(System.String,System.String)">
+            <summary>
+            Response with Hero card
+            </summary>
+            <param name="title">Title of Hero Card</param>
+            <param name="message">Mesage to give</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:BotDot.BusinessLogic.Services.FFMpeg">
             <summary>
             FFMpeg Video Converter
@@ -213,11 +223,12 @@
             Downloads files from the internet
             </summary>
         </member>
-        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload.DownloadVideo(System.Uri)">
+        <member name="M:BotDot.BusinessLogic.Services.Interfaces.IYoutubeDownload.DownloadVideo(System.Uri,System.String)">
             <summary>
             Download YouTube video
             </summary>
             <param name="uri">Uri to the video</param>
+            <param name="userId">UserId of requester</param>
             <returns>Task of Downloaded Video file</returns>
         </member>
         <member name="T:BotDot.BusinessLogic.Services.Youtube_Dl">
@@ -231,12 +242,8 @@
             </summary>
             <param name="outputPath">Output path of downloaded Video</param>
         </member>
-        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.DownloadVideo(System.Uri)">
-            <summary>
-            Download Video
-            </summary>
-            <param name="uri">Url to video</param>
-            <returns>The FileInfo of downloaded file</returns>
+        <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.DownloadVideo(System.Uri,System.String)">
+            <inheritdoc/>
         </member>
         <member name="M:BotDot.BusinessLogic.Services.Youtube_Dl.GetVideoIdFromQueryString(System.Uri)">
             <summary>

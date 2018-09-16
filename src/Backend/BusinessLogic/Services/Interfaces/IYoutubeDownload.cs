@@ -17,7 +17,8 @@ namespace BotDot.BusinessLogic.Services.Interfaces
         /// Download YouTube video
         /// </summary>
         /// <param name="uri">Uri to the video</param>
+        /// <param name="userId">UserId of requester</param>
         /// <returns>Task of Downloaded Video file</returns>
-        Task<FileInfo> DownloadVideo(Uri uri);
+        Task<FileInfo> DownloadVideo(Uri uri, string userId);
     }
 }

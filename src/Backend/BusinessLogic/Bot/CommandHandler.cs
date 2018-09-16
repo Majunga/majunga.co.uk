@@ -47,9 +47,9 @@ namespace BotDot.BusinessLogic.Bot
         /// Run actions for Download command
         /// </summary>
         /// <param name="args">ArgumentsHandler</param>
-        /// <param name="responses">BotResponseHandler</param>
+        /// <param name="userInteraction">BotResponseHandler</param>
         /// <returns>Task</returns>
-        public async Task DownloadCommand(ArguementsHandler args, BotResponseHandler responses)
+        public async Task DownloadCommand(ArguementsHandler args, UserIntractionHandler userInteraction)
         {
             // Get arguments
             var model = args.GetDownloadCommandArguements();
@@ -57,33 +57,33 @@ namespace BotDot.BusinessLogic.Bot
 
             if (!result.Item1)
             {
-                await responses.SendMessage(result.Item2);
+                await userInteraction.SendMessage(result.Item2);
                 return;
             }
 
             // Download file
-            await responses.SendMessage("Downloading video");
+            await userInteraction.SendMessage("Downloading video");
 
-            var file = await this.download.DownloadVideo(model.Uri);
+            var file = await this.download.DownloadVideo(model.Uri, userInteraction.UserId);
 
             if (!file.Exists)
             {
-                await responses.SendMessage("Failed to download Video.");
+                await userInteraction.SendMessage("Failed to download Video.");
                 return;
             }
 
             // Convert to mp4 and if needed trim file
-            await responses.SendMessage("Formating video");
+            await userInteraction.SendMessage("Formating video");
 
             var formattedVideo = await this.videoConverter.ConvertToMp4(file, Tuple.Create(model.Start, model.End));
 
             if (!formattedVideo.Exists)
             {
-                await responses.SendMessage("Failed to format Video.");
+                await userInteraction.SendMessage("Failed to format Video.");
                 return;
             }
 
-            await responses.SendDownloadHeroCard("Done!", "Please click the link to get video", $"{Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
+            await userInteraction.SendDownloadHeroCard("Done!", "Please click the link to get video", $"{Environment.GetEnvironmentVariable("URL")}/static/{formattedVideo.Name}");
         }
     }
 }

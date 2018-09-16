@@ -35,7 +35,7 @@ namespace BotDot.BusinessLogic.Services
         public async Task<FileInfo> ConvertToMp4(FileInfo file, Tuple<string, string> times)
         {
             var path = FileHelper.GetFullPath(this.outputPath);
-            var newFilename = $"{path}/{file.Name.Replace(file.Extension, string.Empty)}Cut.mp4";
+            var newFilename = $"{path}/{file.Name.Replace("Original", string.Empty).Replace(file.Extension, string.Empty)}.mp4";
             var arguments = $"-y -i {file.FullName} ";
 
             if (!string.IsNullOrWhiteSpace(times?.Item1))

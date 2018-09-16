@@ -395,4 +395,7 @@ ASALocalRun/
 .mfractor/
 
 # Ignore static files
-wwwroot/static/**
+*.mkv
+*.mp4
+*.acc
+*.webm

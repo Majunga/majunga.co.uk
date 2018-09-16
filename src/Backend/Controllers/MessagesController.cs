@@ -59,18 +59,18 @@ namespace BotDot.Controllers
                     if (arguments.CanAction())
                     {
                         var command = arguments.GetCommand();
-                        var responseHandler = new BotResponseHandler(connector, activity);
+                        var userHandler = new UserIntractionHandler(connector, activity);
                         switch (command)
                         {
                             case CommandHandler.Commands.Download:
-                                await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, responseHandler);
+                                await new CommandHandler(this.download, this.videoConverter).DownloadCommand(arguments, userHandler);
                                 break;
                             default:
                                 var message = $"Usage: bot download [Optional Commands] [Youtube URL] {Environment.NewLine}";
                                 message += $"Where [Commands] is one of: {Environment.NewLine}";
                                 message += $"--start HH:MM:SS {Environment.NewLine}";
                                 message += $"--end HH:MM:SS {Environment.NewLine}";
-                                await responseHandler.SendHeroCard("Bot Help", message);
+                                await userHandler.SendHeroCard("Bot Help", message);
                                 break;
                         }
                     }

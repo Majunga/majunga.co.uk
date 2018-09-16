@@ -27,12 +27,8 @@ namespace BotDot.BusinessLogic.Services
             this.outputPath = outputPath;
         }
 
-        /// <summary>
-        /// Download Video
-        /// </summary>
-        /// <param name="uri">Url to video</param>
-        /// <returns>The FileInfo of downloaded file</returns>
-        public async Task<FileInfo> DownloadVideo(Uri uri)
+        /// <inheritdoc/>
+        public async Task<FileInfo> DownloadVideo(Uri uri, string userId)
         {
             var path = FileHelper.GetFullPath(this.outputPath);
 
@@ -40,13 +36,13 @@ namespace BotDot.BusinessLogic.Services
 
             Console.WriteLine(Environment.CurrentDirectory);
 
-            var arguments = $"--restrict-filenames -o \"{path}/%(id)s.%(ext)s\" {uri.ToString()}";
+            var arguments = $"--restrict-filenames -o \"{path}/{userId}%(id)sOriginal.%(ext)s\" {uri.ToString()}";
 
             Console.WriteLine(arguments);
 
             await new ProcessHelper().Run("youtube-dl", arguments);
 
-            var filename = Directory.GetFiles(path, $"{id}*.*")?.FirstOrDefault() ?? string.Empty;
+            var filename = Directory.GetFiles(path, $"{userId}{id}*.*")?.FirstOrDefault() ?? string.Empty;
 
             if (string.IsNullOrWhiteSpace(filename))
             {

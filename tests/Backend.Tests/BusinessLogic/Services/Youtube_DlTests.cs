@@ -51,7 +51,7 @@ namespace BotDot.Tests.BusinessLogic.Services
             var youtube_dl = new Youtube_Dl("");
             var id = "uq5MtA33OHk";
 
-            var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}")).Result;
+            var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}"), "test").Result;
 
             if (result.Exists)
             {
@@ -67,7 +67,7 @@ namespace BotDot.Tests.BusinessLogic.Services
             var youtube_dl = new Youtube_Dl("");
             var id = "uq5MtA33OHk";
 
-            var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}&t=1407s")).Result;
+            var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}&t=1407s"), "test").Result;
 
             if (result.Exists)
             {
