@@ -1,0 +1,13 @@
+version: "3"
+services:
+    frontend:
+        ports:
+          - "$(frontPorts)"
+    backend:
+        environment: 
+            MicrosoftAppId: '$(msAppId)'
+            MicrosoftAppPassword: '$(msAppPass)'
+            URL: '$(URL)'
+            ASPNETCORE_ENVIRONMENT: '$(env)'
+        ports:
+            - "$(backendPorts)"
