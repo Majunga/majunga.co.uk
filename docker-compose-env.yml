@@ -1,8 +1,0 @@
-version: "3"
-services:
-    backend:
-        environment: 
-            - MicrosoftAppId={msAppId}
-            - MicrosoftAppPassword={msAppPass}
-            - URL={URL}
-            - ASPNETCORE_ENVIRONMENT={env}
