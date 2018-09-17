@@ -2,12 +2,12 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Bot
+namespace Backend.BusinessLogic.Bot
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using BotDot.BusinessLogic.Bot.Models;
+    using Backend.BusinessLogic.Bot.Models;
 
     /// <summary>
     /// Get Arguments from string message

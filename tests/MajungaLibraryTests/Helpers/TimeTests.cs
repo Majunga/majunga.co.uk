@@ -1,7 +1,7 @@
-﻿using BotDot.Helpers;
+﻿using MajungaLibrary.Helpers;
 using Xunit;
 
-namespace BotDot.Tests.Helpers
+namespace MajungaLibraryTests.Helpers
 {
     public class TimeTests
     {

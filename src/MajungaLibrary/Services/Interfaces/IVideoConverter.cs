@@ -2,7 +2,7 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Services.Interfaces
+namespace MajungaLibrary.BusinessLogic.Services.Interfaces
 {
     using System;
     using System.IO;

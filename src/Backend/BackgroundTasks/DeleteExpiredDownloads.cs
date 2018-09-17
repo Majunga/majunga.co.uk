@@ -2,12 +2,12 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BackgroundTasks
+namespace Backend.BackgroundTasks
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using BotDot.Helpers;
+    using MajungaLibrary.Helpers;
     using Microsoft.Extensions.Hosting;
 
     /// <summary>

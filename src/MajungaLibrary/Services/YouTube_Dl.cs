@@ -2,14 +2,14 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Services
+namespace MajungaLibrary.BusinessLogic.Services
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using BotDot.BusinessLogic.Services.Interfaces;
-    using BotDot.Helpers;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
+    using MajungaLibrary.Helpers;
 
     /// <summary>
     /// Youtube-Dl is used for downloading Youtube videos

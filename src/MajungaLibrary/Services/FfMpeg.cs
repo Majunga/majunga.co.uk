@@ -2,13 +2,13 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Services
+namespace MajungaLibrary.BusinessLogic.Services
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using BotDot.BusinessLogic.Services.Interfaces;
-    using BotDot.Helpers;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
+    using MajungaLibrary.Helpers;
 
     /// <summary>
     /// FFMpeg Video Converter

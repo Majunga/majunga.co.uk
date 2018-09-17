@@ -1,6 +1,6 @@
-﻿namespace BotDot.Tests.BusinessLogic.Services
+﻿namespace MajungaLibraryTests.BusinessLogic.Services
 {
-    using BotDot.BusinessLogic.Services;
+    using MajungaLibrary.BusinessLogic.Services;
     using System;
     using Xunit;
     public class FFMpegTests
