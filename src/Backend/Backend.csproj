@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Majunga_Library" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Bot.Builder" Version="3.16.1.38846" />
     <PackageReference Include="Microsoft.Bot.Builder.History" Version="3.16.1.38846" />
@@ -39,10 +40,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\static\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MajungaLibrary\MajungaLibrary.csproj" />
   </ItemGroup>
 
 </Project>
