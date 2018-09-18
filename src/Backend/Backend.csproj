@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MajungaLibrary" Version="1.2.692" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Bot.Builder" Version="3.16.1.38846" />
     <PackageReference Include="Microsoft.Bot.Builder.History" Version="3.16.1.38846" />
@@ -39,10 +40,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\static\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MajungaLibrary\MajungaLibrary.csproj" />
   </ItemGroup>
 
 </Project>
