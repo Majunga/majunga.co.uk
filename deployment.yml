@@ -28,15 +28,15 @@ spec:
         ports:
         - containerPort: 3000
           name: frontend
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 3000
-        #   periodSeconds: 1
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
 
 ---
 
@@ -45,7 +45,7 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 3000
   selector:
@@ -88,15 +88,15 @@ spec:
         ports:
         - containerPort: 3978
           name: backend
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 3978
-        #   periodSeconds: 1
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 3978
+        readinessProbe:
+          httpGet:
+            path: /static/test.txt
+            port: 3978
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /static/test.txt
+            port: 3978
 
 ---
 
@@ -105,7 +105,7 @@ kind: Service
 metadata:
   name: backend
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 3978
   selector:
