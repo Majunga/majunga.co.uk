@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: frontend
+      service: frontend
+      color: green
+  minReadySeconds: 1
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        type: frontend
+        service: frontend
+        color: green
+        language: javascript
+    spec:
+      containers:
+      - name: frontend
+        image: frontend:1
+        ports:
+        - containerPort: 3000
+          name: frontend
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+        #   periodSeconds: 1
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+  selector:
+    type: frontend
+    service: frontend
+    color: green
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: backend
+      service: backend
+      color: blue
+  minReadySeconds: 1
+  progressDeadlineSeconds: 60
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        type: backend
+        service: backend
+        color: blue
+        language: csharp
+    spec:
+      containers:
+      - name: backend
+        image: backend:2
+        env:
+        - name: ASPNETCORE_URLS
+          value: http://*:3978
+        ports:
+        - containerPort: 3978
+          name: backend
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3978
+        #   periodSeconds: 1
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3978
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: NodePort
+  ports:
+  - port: 3978
+  selector:
+    type: backend
+    service: backend
+    color: blue
