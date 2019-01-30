@@ -93,5 +93,11 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return this.Ok("All good.");
+        }
+
     }
 }
