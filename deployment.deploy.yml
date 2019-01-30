@@ -26,9 +26,9 @@ spec:
       - name: regcred
       containers:
       - name: frontend
-        image: majunga.azurecr.io/frontend:1
+        image: majunga.azurecr.io/frontend:2
         ports:
-        - containerPort: 3000
+        - containerPort: "#[frontPorts]#"
           name: frontend
         readinessProbe:
           httpGet:
@@ -49,7 +49,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
+  - port: "#[frontPorts]#"
   selector:
     type: frontend
     service: frontend
@@ -85,10 +85,16 @@ spec:
       - name: regcred
       containers:
       - name: backend
-        image: majunga.azurecr.io/backend:1
+        image: majunga.azurecr.io/backend:3
         env:
         - name: ASPNETCORE_URLS
-          value: http://*:3978
+          value: '#[URL]#'
+        - name: MicrosoftAppId
+          value: '#[msAppId]#'
+        - name: MicrosoftAppPassword
+          value: '#[msAppPass]#'
+        - name: ASPNETCORE_ENVIRONMENT
+          value: '#[env]#'
         ports:
         - containerPort: 3978
           name: backend
@@ -100,7 +106,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /static/test.txt
-            port: 3978
+            port: "#[backendPorts]#"
 
 ---
 
@@ -111,7 +117,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 3978
+  - port: "#[backendPorts]#"
   selector:
     type: backend
     service: backend
