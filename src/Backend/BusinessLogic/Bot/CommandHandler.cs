@@ -2,11 +2,11 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Bot
+namespace Backend.BusinessLogic.Bot
 {
     using System;
     using System.Threading.Tasks;
-    using BotDot.BusinessLogic.Services.Interfaces;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
 
     /// <summary>
     /// Command Handler

@@ -6,9 +6,9 @@ namespace BotDot
 {
     using System;
     using System.IO;
-    using BotDot.BackgroundTasks;
-    using BotDot.BusinessLogic.Services;
-    using BotDot.BusinessLogic.Services.Interfaces;
+    using Backend.BackgroundTasks;
+    using MajungaLibrary.BusinessLogic.Services;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

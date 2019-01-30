@@ -2,11 +2,11 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.BusinessLogic.Bot.Models
+namespace Backend.BusinessLogic.Bot.Models
 {
+    using MajungaLibrary.Helpers;
     using System;
     using System.Globalization;
-    using BotDot.Helpers;
 
     /// <summary>
     /// Download Model and methods

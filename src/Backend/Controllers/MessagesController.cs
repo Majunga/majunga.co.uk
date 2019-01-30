@@ -2,16 +2,16 @@
 // Copyright (c) Majunga.co.uk. All rights reserved.
 // </copyright>
 
-namespace BotDot.Controllers
+namespace Backend.Controllers
 {
-    using BotDot.BusinessLogic.Bot;
-    using BotDot.BusinessLogic.Services.Interfaces;
+    using System;
+    using System.Threading.Tasks;
+    using Backend.BusinessLogic.Bot;
+    using MajungaLibrary.BusinessLogic.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Bot.Connector;
     using Microsoft.Extensions.Configuration;
-    using System;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Bot Messages controller
