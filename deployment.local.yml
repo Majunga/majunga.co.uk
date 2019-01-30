@@ -22,11 +22,9 @@ spec:
         color: green
         language: javascript
     spec:
-      imagePullSecrets:
-      - name: regcred
       containers:
       - name: frontend
-        image: majunga.azurecr.io/frontend:1
+        image: frontend:1
         ports:
         - containerPort: 3000
           name: frontend
@@ -81,11 +79,9 @@ spec:
         color: blue
         language: csharp
     spec:
-      imagePullSecrets:
-      - name: regcred
       containers:
       - name: backend
-        image: majunga.azurecr.io/backend:1
+        image: backend:1
         env:
         - name: ASPNETCORE_URLS
           value: http://*:3978

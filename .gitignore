@@ -399,3 +399,6 @@ ASALocalRun/
 *.mp4
 *.acc
 *.webm
+
+# Configs
+majungacouk-kubeconfig.yaml
