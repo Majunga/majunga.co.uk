@@ -93,9 +93,21 @@ namespace Backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Test for checking messages API
+        /// </summary>
+        /// <returns>Success / fail message</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            var appId = Environment.GetEnvironmentVariable("MicrosoftAppId");
+            var appPass = Environment.GetEnvironmentVariable("MicrosoftAppPassword");
+
+            if (string.IsNullOrWhiteSpace(appId) || string.IsNullOrWhiteSpace(appPass))
+            {
+                return this.BadRequest("MS AppID or Password is missing.");
+            }
+
             return this.Ok("All good.");
         }
 
